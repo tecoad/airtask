@@ -1,0 +1,26 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"command": "yarn start:dev",
+			"name": "Run yarn start:dev",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"type": "node-terminal",
+			"request": "launch",
+			"name": "Jest: current file",
+			//"env": { "NODE_ENV": "test" },
+			"command": "yarn test ${fileBasenameNoExtension}",
+			"protocol": "inspector",
+			"console": "integratedTerminal",
+			"disableOptimisticBPs": true,
+
+			"internalConsoleOptions": "neverOpen"
+		}
+	]
+}

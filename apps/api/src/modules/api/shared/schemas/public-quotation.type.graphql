@@ -1,0 +1,5 @@
+type PublicQuotation {
+  hash: String!
+  title: String!
+  widget_config: WidgetConfig
+}

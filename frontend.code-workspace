@@ -1,0 +1,127 @@
+{
+	"folders": [
+		{
+			"name": "🟢 App",
+			"path": "apps/app"
+		},
+		{
+			"name": "🔵 Widget",
+			"path": "apps/widget"
+		},
+		{
+			"name": "🔗 Redirecter",
+			"path": "apps/redirecter"
+		},
+		{
+			"name": "📦 widget-design",
+			"path": "packages/widget-design"
+		},
+		{
+			"name": "📦 widget-script",
+			"path": "packages/widget-script"
+		},
+		{
+			"name": "📦 core",
+			"path": "packages/core"
+		},
+		{
+			"name": "📦 animations",
+			"path": "packages/animations"
+		},
+		{
+			"name": "📦 eslint-config",
+			"path": "packages/eslint-config"
+		}
+	],
+	"settings": {
+		//change terminal root folder to turborepo
+		// "terminal.integrated.cwd": "../../",
+		"i18n-ally.enabledFrameworks": [
+			"next-intl",
+			"react"
+		],
+		"i18n-ally.keystyle": "nested",
+		"i18n-ally.extract.autoDetect": true,
+		"i18n-ally.annotationMaxLength": 60,
+		"i18n-ally.annotations": false,
+		"i18n-ally.annotationInPlace": false,
+		"i18n-ally.translate.engines": [
+			"google",
+			"openai"
+		],
+		"i18n-ally.editor.preferEditor": true,
+		"liveServer.settings.multiRootWorkspaceName": "📦 widget-script"
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "run_turbo",
+				"command": "cd .. && yarn dev",
+				"type": "shell",
+				"isBackground": true,
+				"problemMatcher": [
+					{
+						"pattern": [
+							{
+								"regexp": ".",
+								"file": 1,
+								"location": 2,
+								"message": 3
+							}
+						],
+						"background": {
+							"activeOnStart": true,
+							"beginsPattern": ".",
+							"endsPattern": "."
+						}
+					}
+				]
+			},
+			{
+				"label": "run_turbo_sec",
+				"command": "cd .. && yarn dev:sec",
+				"type": "shell",
+				"isBackground": true,
+				"problemMatcher": [
+					{
+						"pattern": [
+							{
+								"regexp": ".",
+								"file": 1,
+								"location": 2,
+								"message": 3
+							}
+						],
+						"background": {
+							"activeOnStart": true,
+							"beginsPattern": ".",
+							"endsPattern": "."
+						}
+					}
+				]
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch Dev",
+				"request": "launch",
+				"type": "chrome",
+				"url": "http://localhost:3001",
+				"webRoot": "${workspaceFolder}",
+				"preLaunchTask": "run_turbo"
+			},
+			{
+				"name": "Launch Dev:sec",
+				"request": "launch",
+				"type": "chrome",
+				"url": "http://local.airtask.dev",
+				"webRoot": "${workspaceFolder}",
+				"preLaunchTask": "run_turbo_sec"
+			}
+		]
+	}
+}

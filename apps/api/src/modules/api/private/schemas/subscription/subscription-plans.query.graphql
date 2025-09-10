@@ -1,0 +1,22 @@
+enum PlanInterval {
+	month
+	year
+}
+
+type SubscriptionPlanPrice {
+	price: String!
+	currency: CurrencyCode!
+	interval: PlanInterval!
+	external_id: String!
+}
+
+type SubscriptionPlan {
+	id: ID!
+	name: String!
+	benefits: [Translation]
+	prices: [SubscriptionPlanPrice!]!
+}
+
+extend type Query {
+	subscriptionPlans: [SubscriptionPlan!]!
+}

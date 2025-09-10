@@ -1,0 +1,16 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"lib": ["dom"],
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"preserveWatchOutput": true,
+		"skipLibCheck": true,
+		"strict": true
+	},
+	"include": ["./src"]
+}

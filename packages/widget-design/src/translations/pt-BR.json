@@ -1,0 +1,20 @@
+{
+  "powered-by": "Powered by",
+  "user": {
+    "form": {
+      "name": "Nome",
+      "email": "Email",
+      "start": "Iniciar",
+      "phone": "Telefone",
+      "country": {
+        "label": "País",
+        "searchNoResults": "Nenhum país encontrado.",
+        "searchPlaceholder": "Pesquise um país"
+      }
+    }
+  },
+  "userInput": {
+    "writeAMessage": "Escreva uma mensagem",
+    "placeholder": "Escreva"
+  }
+}

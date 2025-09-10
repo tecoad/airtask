@@ -1,0 +1,12 @@
+input UpdateFlowInput {
+	id: ID!
+	name: String
+	agent: ID
+	segment: ID
+	status: FlowStatus
+	daily_budget: Float
+}
+
+extend type Mutation {
+	updateFlow(input: UpdateFlowInput!): Flow!
+}

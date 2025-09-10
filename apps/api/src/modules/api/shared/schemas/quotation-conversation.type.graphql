@@ -1,0 +1,38 @@
+enum QuotationMessageRole {
+  agent
+  customer
+}
+
+type QuotationConversationRecipient {
+  first_name: String
+  last_name: String
+  email: String
+  phone: String
+}
+
+input QuotationConversationRecipientInput {
+  first_name: String!
+  last_name: String!
+  email: String!
+  phone: String
+}
+
+type QuotationConversationMessage {
+  sent_at: DateTime!
+  content: String!
+  role: QuotationMessageRole!
+  is_ending_message: Boolean
+}
+
+enum QuotationConversationStatus {
+  active
+  finished
+}
+
+type QuotationConversation {
+  id: ID!
+  status: QuotationConversationStatus!
+  message: [QuotationConversationMessage!]!
+  recipient: QuotationConversationRecipient
+  quotation: PublicQuotation
+}

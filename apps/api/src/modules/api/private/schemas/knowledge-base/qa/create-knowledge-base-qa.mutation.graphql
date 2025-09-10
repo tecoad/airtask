@@ -1,0 +1,18 @@
+type KnowledgeBaseQA {
+	id: ID!
+	question: String!
+	answer: String!
+	knowledge_base: [KnowledgeBase!]!
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+input CreateKnowledgeBaseQAInput {
+	knowledge_base_id: [ID!]!
+	question: String!
+	answer: String!
+}
+
+extend type Mutation {
+	createKnowledgeBaseQA(input: [CreateKnowledgeBaseQAInput!]!): [KnowledgeBaseQA!]!
+}

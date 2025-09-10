@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "errors": {}
+  },
+  "errors": {
+    "domainNotAllowed": "Este domínio não tem permissão para acessar esse widget.",
+    "quotationNotFoundAfterCreateConversation": "O módulo usado para criar esta conversa não está mais disponível.",
+    "quotationNotFound": "O widget que você está tentando acessar não existe.",
+    "quotationWithoutActiveSubscription": "Este usuário não possui mais uma conta ativa.",
+    "unexpected": "Ocorreu um erro inesperado ao tentar iniciar a conversa. Por favor, tente novamente mais tarde"
+  }
+}

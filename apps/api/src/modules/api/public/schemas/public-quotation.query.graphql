@@ -1,0 +1,19 @@
+enum QuotationAvailabilityErrorCode {
+	QUOTATION_WITHOUT_ACTIVE_SUBSCRIPTION
+	QUOTATION_NOT_FOUND
+}
+
+type QuotationAvailabilityError {
+	errorCode: QuotationAvailabilityErrorCode!
+	message: String!
+}
+
+union PublicQuotationResult = PublicQuotation | QuotationAvailabilityError
+
+extend type Query {
+	# Get a quotation by hash. PublicQuotation is
+	# the one that is visible to the public, while
+	# Quotation is the one that is visible to the account users.
+	publicQuotation(hash: String, id: ID): PublicQuotationResult
+	findPublicWithoutAvailabilityCheck(hash: String, id: ID): PublicQuotation
+}

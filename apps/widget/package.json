@@ -1,0 +1,35 @@
+{
+	"name": "@airtask/widget",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev -p 3002",
+		"dev:sec": "next dev -p 3002 & local-ssl-proxy --key ../../certificates/localhost+1-key.pem --cert ../../certificates/localhost+1.pem -s 5002 -t 3002 -n local.airtask.dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"codegen": "graphql-codegen --config ./codegen.ts"
+	},
+	"dependencies": {
+		"@airtask/core": "*",
+		"@airtask/widget-design": "*",
+		"@airtask/widget-script": "*",
+		"@apollo/client": "rc",
+		"@apollo/experimental-nextjs-app-support": "^0.4.1",
+		"@types/react": "^18.2.22",
+		"apollo-upload-client": "^17.0.0",
+		"graphql": "^16.6.0",
+		"graphql-ws": "^5.14.0",
+		"next": "^14.0.3",
+		"next-intl": "^3.2.2",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^2.13.1",
+		"@graphql-codegen/client-preset": "^1.0.2",
+		"@graphql-codegen/typescript": "^2.7.3",
+		"@graphql-codegen/typescript-operations": "^2.5.3",
+		"dotenv": "^16.0.3"
+	}
+}

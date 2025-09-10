@@ -1,0 +1,24 @@
+input UpdateQuotationInput {
+  id: ID!
+  title: String
+  data_structure: JSON
+  status: QuotationStatus
+  prompt_instructions: String
+  widget_config: WidgetConfigInput
+}
+
+input UpdateQuotationQuestionInput {
+  id: ID!
+  label: String
+  order: Int
+  condition: String
+  parent: ID
+  active: Boolean
+}
+
+extend type Mutation {
+  updateQuotation(input: UpdateQuotationInput!): Quotation!
+  updateQuotationQuestion(
+    input: UpdateQuotationQuestionInput!
+  ): QuotationQuestion!
+}

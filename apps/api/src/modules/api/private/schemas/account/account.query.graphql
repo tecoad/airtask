@@ -1,0 +1,23 @@
+type OnBoardingStep {
+	id: ID!
+	name: OnBoardingStepName!
+	module: AccountUsageKind!
+	# Date created is the date the step was created for the account, meaning the completed date
+	date_created: String!
+}
+
+type Account {
+	id: ID!
+	name: String!
+	segment: Segment
+	description: String
+	website: String
+	currency: CurrencyCode
+	users: [UserAccount!]!
+	active_subscription: AccountSubscription
+	concluded_onboarding_steps: [OnBoardingStep!]!
+}
+
+extend type Query {
+	account(id: ID!): Account
+}

@@ -1,0 +1,40 @@
+type FlowRecording {
+	id: ID!
+	contact_name: String!
+	contact_phone: String!
+	flow: Flow
+	duration: Int!
+	record: Asset!
+	date_created: DateTime!
+}
+
+input FlowRecordingListSort {
+	date_created: SortOrder
+}
+
+input PaginatedFlowRecordingListOptions {
+	take: Int
+	skip: Int
+	sort: FlowRecordingListSort
+}
+
+input FlowRecordingListFilter {
+	operator: FilterOperator!
+	contact_search: String
+	flow: ID
+	duration: NumberFilter
+	date_created: DateTimeFilter
+}
+
+type PaginatedFlowRecordingList {
+	items: [FlowRecording!]!
+	totalItems: Int!
+}
+
+extend type Query {
+	flowRecordings(
+		accountId: ID!
+		pagination: PaginatedFlowRecordingListOptions
+		filter: FlowRecordingListFilter
+	): PaginatedFlowRecordingList!
+}

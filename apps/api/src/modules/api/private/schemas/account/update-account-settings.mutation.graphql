@@ -1,0 +1,11 @@
+input UpdateAccountSettingsInput {
+  id: ID!
+  name: String
+  description: String
+  segment: ID
+  website: String
+}
+
+extend type Mutation {
+  updateAccountSettings(input: UpdateAccountSettingsInput!): Account
+}

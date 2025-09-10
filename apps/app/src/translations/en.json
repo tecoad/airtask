@@ -1,0 +1,990 @@
+{
+  "404": {
+    "title": "404",
+    "message": "We could not find the page your are looking for.",
+    "return": "Return"
+  },
+  "header": {
+    "menu": {
+      "dashboard": "Dashboard",
+      "accountSettings": "Account Settings",
+      "billing": "Billing",
+      "help": "Help",
+      "affiliate": "Affiliate",
+      "modules": {
+        "label": "Modules",
+        "quotation": "Quotation",
+        "knowledgeBase": "Knowledge Base",
+        "call": {},
+        "flow": {
+          "label": "Flow",
+          "contacts": "Contacts",
+          "recordings": "Recordings",
+          "agents": "Agents",
+          "segments": "Segments",
+          "instances": "Instances"
+        }
+      },
+      "integrations": "Integrations"
+    },
+    "languages": {
+      "english": "English",
+      "portuguese": "Portuguese-br"
+    },
+    "billing": {},
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "searchUserPlaceholder": "Search User...",
+    "account": {
+      "logout": "Logout",
+      "manage": "Manage",
+      "personal": "Personal"
+    }
+  },
+  "affiliates": {
+    "title": "Affiliate dashboard",
+    "subtitle": "Manage your affiliation account",
+    "overview": {
+      "pendingToReceive": "Pending to receive",
+      "fromLastMonth": "{value} from last month",
+      "totalAffiliates": "Total affiliates",
+      "nextPaymentAt": "Next payment { date }"
+    },
+    "comissions": {
+      "status": {
+        "paid": "Paid",
+        "pending": "Pendente"
+      },
+      "column": {
+        "amount": "Amount",
+        "status": "Status",
+        "date": "Date"
+      },
+      "title": "Comissions",
+      "subtitle": "Keep track on your gains",
+      "filterStatus": "Status"
+    },
+    "settings": {
+      "title": "Affiliate Settings",
+      "subtitle": "Manage your affiliate settings.",
+      "form": {
+        "alias": "Alias",
+        "yourUrl": "Your sharing url:",
+        "copyUrl": "Copy url",
+        "copiedUrl": "Copied!",
+        "confirmSubmit": {
+          "title": "Confirm alias change?",
+          "description": "Changing your alias will modify your affiliate link, and your old link will be deactivated and rendered useless. Are you sure?",
+          "confirm": "Confirm"
+        },
+        "payout_method": "Payout method",
+        "payout_placeholder": "Select a method",
+        "payout_method_key": {
+          "pix": "Pix key",
+          "paypal": "Paypal Email"
+        },
+        "confirmPassword": "Confirm Password",
+        "save": "Save",
+        "dismiss": "Dismiss"
+      },
+      "errors": {
+        "mandatory": "Mandatory field",
+        "emailNotValid": "Invalid email",
+        "aliasNotAvailable": "The alias { alias } is not available",
+        "methodNotValid": "Method not valid",
+        "invalidPassword": "The password is not valid"
+      }
+    },
+    "statusMap": {},
+    "filters": {
+      "status": {}
+    },
+    "sidenav": {
+      "settings": "Settings",
+      "comissions": "Comissions",
+      "overview": "Overview"
+    }
+  },
+  "auth": {
+    "meta": {},
+    "register": {
+      "title": "Register",
+      "description": "Create an account",
+      "instruction": "Enter your email below to create your account",
+      "disclaimer": "By clicking continue, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+      "email": "Email",
+      "password": "Password",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "button": "Register",
+      "linkSent": "A link has been sent to your email. Please access it to finish your account setup.",
+      "verifyEmail": "Please verify now your email."
+    },
+    "login": {
+      "title": "Login",
+      "description": "Welcome back!",
+      "instruction": "Enter your email and password below to login into your account.",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot Password?",
+      "button": "Login"
+    },
+    "errors": {
+      "mandatory": "Mandatory Field",
+      "emailInvalid": "Enter a valid email address",
+      "invalidCredentials": "Email or password is incorrect",
+      "passwordsDontMatch": "Passwords don't match",
+      "emailInUse": "Email already in use"
+    },
+    "verifyEmail": {
+      "title": "Verify Email",
+      "invalidLink": "Your link is invalid",
+      "expiredLink": "Your link is expired",
+      "resendLink": "Resend link",
+      "codeSent": "A code has been sent to your email",
+      "success": "Success"
+    },
+    "passwordReset": {
+      "title": "Password Reset",
+      "email": "Your email",
+      "description": "Regain access to your account",
+      "newPassword": "New password",
+      "linkSend": "A link has been sent to your email. Please access it to finish your password reset.",
+      "linkInvalid": "This reset password link is not longer valid, please request a new one and try again.",
+      "requestLink": "Request new link",
+      "confirmNewPassword": "Confirm new password",
+      "changePassword": "Change password",
+      "recoverPassword": "Recover password",
+      "success": "Sucess",
+      "instructionsSent": "Please follow the instructions sent to your email to reset your password."
+    },
+    "quote": {
+      "text": "The only constant is change.",
+      "author": "Heraclitus"
+    }
+  },
+  "billing": {
+    "meta": {},
+    "title": "Billing",
+    "subtitle": "See how your billing usage is going",
+    "administratePlan": "Administrate Plan",
+    "currentPlan": "Current Plan",
+    "intervals": {
+      "month": "Monthly",
+      "year": "Yearly"
+    },
+    "buyCredits": "Purchase Credits",
+    "usageThisMonth": "Usage this month",
+    "payment_failed": "Late payment",
+    "purchaseCredits": {},
+    "purchase-credits": {},
+    "balance": "Balance"
+  },
+  "dashboard": {
+    "meta": {},
+    "welcome": "Welcome { firstname }!",
+    "access": "Your last access was { time }.",
+    "onboardingSteps": {
+      "finishNow": "Finish now",
+      "showSteps": "Show steps",
+      "hideSteps": "Hide steps",
+      "finishedAt": "Finished at { date } at { time }",
+      "percentProgress": "{ percent }% finished",
+      "quotation": {
+        "title": "Quotation",
+        "finish_setup_account": {},
+        "create_first_quotation": {
+          "title": "Create first quotation",
+          "execDescription": "Create your first quotation and start to receive requests from your customers."
+        },
+        "first_quotation_copy_link": {
+          "title": "Copy sharable link",
+          "execDescription": "Copy the url of your first quotation and share it with your customers."
+        },
+        "receive_first_quotation_request": {
+          "title": "Receive your first quotation request",
+          "execDescription": "Receive your first request to your configured module"
+        },
+        "setup_widget_settings": {
+          "title": "Customize your widget",
+          "execDescription": "Set your widget appearance as you wish to impress your customers."
+        }
+      }
+    }
+  },
+  "help": {
+    "meta": {},
+    "form": {
+      "methods": {},
+      "email": "Email",
+      "emailPlaceholder": "Your email",
+      "subject": "Subject",
+      "subjectPlaceholder": "Type a subject",
+      "issue": "Message",
+      "submit": "Submit",
+      "issuePlaceholder": "Describe how we can help",
+      "errors": {
+        "email": "Email is mandatory"
+      }
+    },
+    "submited": "Your message has been received by our team. The generated ticket is #{ticket}.",
+    "title": "Report an Issue",
+    "subtitle": "Let us know how we can help you"
+  },
+  "meta": {
+    "brand": "Airtask",
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "modules": {},
+    "billing": {
+      "purchase-credits": {}
+    },
+    "quotation": {
+      "instance": {},
+      "title": "Quotation - {title}"
+    },
+    "integrations": {}
+  },
+  "modules": {
+    "meta": {},
+    "createNew": "New",
+    "noInstance": "You didn't create any instance yet.",
+    "noInstanceSearch": "No Instance Found.",
+    "select": "Select",
+    "create": {},
+    "install": {
+      "embed": {
+        "title": "Install the widget",
+        "subtitle": "Add the widget to your website or custom application",
+        "instructions": "Insert this code before the ending of the <body> tag of your website."
+      },
+      "shareLink": {
+        "title": "Sharable Link",
+        "description": "Share a link that leads to your widget"
+      },
+      "instructions": "To customize your widget appearance, access the widget settings page.",
+      "previewWidget": {
+        "title": "Preview on your website",
+        "description": "Insert your website's url and view how its going to look like",
+        "goToWebsite": "Preview on website"
+      }
+    },
+    "searchItem": "Search item",
+    "knowledge": {
+      "title": "Knowledge Base"
+    }
+  },
+  "plans": {
+    "title": "Plans",
+    "subtitle": "You need to select a plan to proceed",
+    "perDuration": "per <br></br> {duration}",
+    "durations": {},
+    "selectPlan": "Select plan",
+    "startTrial": "Start for Free",
+    "annual": "Annual",
+    "monthly": "Monthly",
+    "billedMonthly": "Billed Monthly",
+    "save": "Save { value }",
+    "success": {},
+    "month": "month",
+    "year": "year",
+    "selectCurrency": "Select currency",
+    "selectCurrencyPlaceholder": "Select a currency"
+  },
+  "quotation": {
+    "meta": {},
+    "instance": {
+      "newInstance": "New module - {name}",
+      "newInstanceInstructions": "Add the questions your should ask to the user to generate the quotation.",
+      "notFound": {},
+      "configuration": {},
+      "actions": {},
+      "question": {
+        "validation": {}
+      },
+      "instanceUpdated": "Instance {instance} updated sucessfully!",
+      "instanceCreated": "Instance {instance} created!"
+    },
+    "install": {},
+    "copy": {},
+    "edit": {
+      "ifAnswerIs": "If answer is",
+      "title": "Editing `{question}`",
+      "subtitle": "Edit the questions which will train your AI",
+      "dismiss": "Dismiss",
+      "save": "Save",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "confirm": "Confirm deletion?",
+      "confirmHasChild": "This question has other {questionsNumber} nested questions. By deleting it, all other questions will be deleted. Confirm?",
+      "addConditionPlaceholder": "Ask another question",
+      "ask": "Then ask",
+      "questionPlaceholder": "Enter a question",
+      "errors": {
+        "mandatory": "Mandatory field",
+        "minimumCharacters": "Should have at least {number} characters.",
+        "endsWithInterrogation": "A question should end with a question mark (?)",
+        "invalidCondition": "Invalid condition",
+        "minimumQuestions": "An instance should have at least {number} question(s)."
+      },
+      "editQuestions": "Questions"
+    },
+    "settings": {
+      "delete": {
+        "title": "Delete Instance",
+        "description": "By deleting an instance, all its data and configuration will be gone. This action is irreversible.",
+        "button": "Delete instance",
+        "confirm": {
+          "ask": "Please insert the instance title {quotation} to delete it. This action can't be undone.",
+          "title": "Confirm deletion"
+        }
+      },
+      "form": {
+        "title": "Title",
+        "reset": "Reset",
+        "save": "Save"
+      },
+      "status": {
+        "title": "Status",
+        "description": "Change visibility of your module. Disabled modules will be no longer interactive."
+      },
+      "title": "Module Settings",
+      "subtitle": "Manage your module settings",
+      "quotation": "Quotation",
+      "titleDontMatch": "Title typed don't match."
+    },
+    "updatingItems": "Updating status of {count} items...",
+    "sidenav": {
+      "overview": "Overview",
+      "edit": "Edit",
+      "settings": "Settings",
+      "widget": "Widget",
+      "install": "Installation",
+      "requests": "Received Requests",
+      "promptInstructions": "Prompt Instructions"
+    },
+    "updatedItems": "Items updated",
+    "itemsUpdating": "Updating items...",
+    "overview": {
+      "totalRequests": "Total Requests"
+    },
+    "requests": {
+      "markAs": "Mark as",
+      "status": "Status",
+      "pending": "Pending",
+      "done": "Done",
+      "notFound": "Request not found",
+      "title": "Request",
+      "infos": "Infos",
+      "column": {
+        "id": "Id",
+        "from": "From",
+        "date": "Date",
+        "status": "Status"
+      },
+      "actions": "Actions",
+      "setAsPending": "Set as Pending",
+      "setAsDone": "Set as Done",
+      "search": "Search for a request...",
+      "edit": "Edit",
+      "changeStatus": "Change Status"
+    },
+    "title": "Instance: {title}",
+    "itemUpdated": "Item updated",
+    "widget": {
+      "title": "Widget",
+      "subtitle": "Manage your widget settings"
+    },
+    "instructions": {
+      "title": "Instructions",
+      "subtitle": "Give more context to your AI ",
+      "form": {
+        "save": "Save",
+        "reset": "Dismiss",
+        "about": {
+          "generateByIA": "Generate by IA",
+          "title": "About your business",
+          "description": "Help the IA to act with more context.",
+          "howTo": "Tell about your business: name, which location are you in, where do you operate, how do you operate.. etc. "
+        }
+      }
+    },
+    "quotation": "Quotation",
+    "create": {
+      "dismiss": "Dismiss",
+      "errors": {
+        "title": {
+          "required": "Required field"
+        }
+      },
+      "title": "Create Instance",
+      "subtitle": "Create a new module instance",
+      "instanceTitle": "Title",
+      "createInstance": "Create",
+      "instanceTitlePlaceholder": "Insert a title"
+    }
+  },
+  "settings": {
+    "meta": {},
+    "title": "Account Settings",
+    "subtitle": "Manage your account settings.",
+    "user": {
+      "title": "User Settings",
+      "subtitle": "Update your profile information and manage your account settings.",
+      "firstname": "First Name",
+      "lastname": "Last Name",
+      "email": "Email",
+      "password": "Change Password",
+      "confirmPassword": "Confirm New Password",
+      "cancel": "Cancel",
+      "save": "Save",
+      "confirmChange": {
+        "title": "Confirm Change",
+        "subtitle": "Please confirm your current password to save the changes.",
+        "currentPassword": "Password",
+        "confirm": "Confirm change"
+      },
+      "language": "Account Language",
+      "languages": {
+        "english": "English",
+        "portuguese": "Portuguese"
+      }
+    },
+    "widget": {
+      "previewWidget": "View widget",
+      "dismiss": "Dismiss",
+      "updateSettings": "Update Settings",
+      "windowConfig": {
+        "title": "Widget Configuration",
+        "subtitle": "Customize the chat icon that will be displayed on your website.",
+        "widgetTitle": "Title",
+        "mainColor": "Main color",
+        "fontSize": "Font size",
+        "allowedDomains": "Allowed domains",
+        "googleFont": {
+          "title": "Google Font"
+        },
+        "position": "Position",
+        "windowWidth": "Widget Width",
+        "windowHeight": "Widget Height",
+        "hidePoweredBy": "Hide 'Powereded By Airtask' (Airtask Branding)",
+        "hidePoweredByDesc": "Do not show the Airtask branding on your widget",
+        "initiallyOpen": "Start Opened?",
+        "initiallyOpenDesc": "Start the chat widget opened",
+        "avatar": {
+          "title": "Avatar",
+          "description": "Choose an avatar for your bot"
+        },
+        "addNewDomain": "Add a new domain",
+        "themes": {
+          "title": "Available Themes",
+          "dark": "Dark",
+          "light": "Light",
+          "both": "Both",
+          "placeholder": "Select available themes"
+        },
+        "positions": {
+          "TopRight": "Top Right",
+          "TopLeft": "Top Left",
+          "BottomRight": "Bottom Right",
+          "BottomLeft": "Bottom Left"
+        },
+        "selectPosition": "Select a position"
+      },
+      "buttonConfig": {
+        "title": "Widget Button",
+        "subtitle": "Customize the chat button that will be displayed on your website.",
+        "distanceFromBorder": "Distance from border",
+        "buttonHeight": "Height",
+        "buttonText": "Text",
+        "buttonTextColor": "Text Color",
+        "buttonColor": "Background Color",
+        "buttonIconColor": "Icon color",
+        "buttonFontSize": "Fontsize",
+        "icon": {
+          "title": "Icon",
+          "description": "Add an icon for the button"
+        }
+      },
+      "widgetPreview": {
+        "fakeBotMessage": "Welcome to my custom AI!",
+        "fakeUserMessage": "This is an example response!"
+      },
+      "globalSettings": {
+        "title": "Use widget global settings",
+        "description": "We will load the configuration set on the account level"
+      },
+      "defaultTitle": "Widget Title"
+    },
+    "errors": {
+      "user": {
+        "mandatory": "Mandatory Field",
+        "emailInvalid": "Enter a valid email address",
+        "currentPassword": "Please insert your current password",
+        "passwordsDontMatch": "Passwords don't match",
+        "emailInUse": "Email already in use",
+        "wrongPassword": "Wrong password. Please try again."
+      },
+      "widgetSettings": {
+        "main_color_hex": "Should be a valid HEX. Example: #000000"
+      }
+    },
+    "sidenav": {
+      "user": "User",
+      "widget": "Widget"
+    }
+  },
+  "ui": {
+    "phone": {},
+    "savebar": {},
+    "dropzone": {
+      "clickToUpload": "Click to upload",
+      "anyFileType": "files up to 2MB",
+      "fileType": "{ types }",
+      "orDrop": "Release a file here",
+      "orDrag": "Drag a file here"
+    },
+    "dataTable": {
+      "pageOf": "Page {current} of {last}",
+      "selectedOfTotal": "{selected} of {total} {total, plural, =1 {row} other {rows}} selected",
+      "totalItems": "{total, plural, =0 {no rows} =1 {# row} other {# rows}}",
+      "asc": "Asc",
+      "desc": "Desc",
+      "hide": "Hide",
+      "toggleColumns": "Toggle Columns",
+      "noResults": "No results",
+      "view": "View",
+      "rowsPerPage": "per page"
+    },
+    "confirm": "Confirm",
+    "dismiss": "Dismiss",
+    "colorPicker": {
+      "pickColor": "Pick a color"
+    },
+    "createNew": "Create new",
+    "multiselect": {
+      "placeholder": "Select..."
+    },
+    "deletionCard": {
+      "delete": {
+        "confirm": {
+          "ask": "Please insert the {type} title \"{title}\" to delete it. ",
+          "title": "Confirm deletion?",
+          "cantUndo": "This action cannot be undone."
+        },
+        "button": "Delete",
+        "description": "By deleting this, all its data and configuration will be gone. This action is irreversible.",
+        "title": "Deletion"
+      }
+    }
+  },
+  "success": {
+    "title": "Success!",
+    "message": "Your transaction has been made sucessfully. \nYou can now activate your services.",
+    "goToDashboard": "Go to Dashboard"
+  },
+  "flow": {
+    "contacts": {
+      "sidenav": {},
+      "title": "Contacts",
+      "meta": {},
+      "column": {
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "email": "Email",
+        "phone": "Phone",
+        "segments": "Segments",
+        "metadata": "Metadata",
+        "status": "Status"
+      },
+      "actions": "Actions",
+      "edit": "Edit",
+      "changeStatus": "Change Status",
+      "status": "Status",
+      "search": "Search",
+      "active": "Active",
+      "inactive": "Inactive",
+      "setAsStatus": "Set as {status}",
+      "segment": "Segment",
+      "importing": {
+        "selectSegment": {
+          "title": "Import contacts",
+          "description": "Select a segment to import your contacts into.",
+          "label": "Segment"
+        },
+        "import": "Import",
+        "previous": "Previous",
+        "next": "Next",
+        "close": "Close",
+        "selectAFileToUpload": "Select file",
+        "processingImport": "Processing Import",
+        "errors": {
+          "invalidCsvColumnsStructure": "Invalid CSV columns",
+          "invalidFileFormat": "Invalid file format",
+          "noItemsFound": "No contacts found in provided file",
+          "selectASegment": "Select a segment",
+          "selectAFile": "Select a file"
+        },
+        "processingFile": "Importing {contacts, plural, =1 {# contact} other {# contacts}}.",
+        "windowClosingAt": "Closing window in {secondsLeft, plural, =1 {# second} other {# seconds}}.",
+        "emailNotification": "You will receive the final results by email once importing has been completed.",
+        "downloadFileExample": "Download example file"
+      },
+      "oneOrMoreItemsUpdating": "Updating {count, plural, =1 {contact} other {contacts}}.",
+      "oneOrMoreItemsUpdated": "Updating {count, plural, =1 {contact} other {contacts}}.",
+      "addToSegment": "Add to segment",
+      "removeFromSegment": "Remove from segment"
+    },
+    "campaigns": {
+      "meta": {},
+      "column": {
+        "name": "Name",
+        "type": "Type",
+        "dailyBudget": "Daily Budget",
+        "status": "Status",
+        "segment": "Segment",
+        "agent": "Agent",
+        "dials": "Dials",
+        "pickups": "Pickups"
+      },
+      "actions": "Ações",
+      "create": "Create",
+      "search": "Search",
+      "edit": "Edit",
+      "changeStatus": "Change Status",
+      "status": "Status",
+      "delete": "Delete",
+      "editOrCreate": {
+        "instanceName": "Instance {name}",
+        "createNewInstance": "Create New",
+        "selectAgent": "Select Agent",
+        "name": "Name",
+        "createNewAgent": "Create New Agent",
+        "selectSegment": "Select Segment",
+        "createNewSegment": "Create new segment",
+        "inbound": "Inbound",
+        "outbound": "Outbound",
+        "type": "Type",
+        "status": "Status",
+        "active": "Active",
+        "paused": "Paused",
+        "dailyBudget": "Daily Budget",
+        "close": "Close",
+        "saveChanges": "Save",
+        "selectSegmentPlaceholder": "Select a segment",
+        "selectAgentPlaceholder": "Select an agent",
+        "selectTypePlaceholder": "Select a flow type"
+      },
+      "active": "Active",
+      "paused": "Paused",
+      "stopped": "Stopped",
+      "inbound": "Inbound",
+      "outbound": "Outbound",
+      "itemSuccessfullyDeleted": "Item deleted!",
+      "deletingItem": "Deleting item",
+      "errors": {
+        "selectAAgent": "You must select an agent.",
+        "required": "Required field",
+        "selectASegment": "You must select a segment for a Outbound campaign."
+      },
+      "oneOrMoreItemsUpdating": "Updating {count, plural, =1 {item} other {items}}.",
+      "oneOrMoreItemsUpdated": "{count, plural, =1 {# item} other {# items}} sucessfully updated."
+    },
+    "recordings": {
+      "title": "Recordings",
+      "meta": {},
+      "column": {
+        "contact": "Contact",
+        "number": "Number",
+        "campaign": "Campaign",
+        "type": "Type",
+        "date": "Date",
+        "status": "Status",
+        "duration": "Duration",
+        "recording": "Recording",
+        "transcript": "Transcript"
+      },
+      "search": "Search",
+      "campaign": "Campaign",
+      "duration": "Duration",
+      "status": "Status",
+      "durations": {
+        "upTo2Minutes": "Up to 2 minutes",
+        "above6Minutes": "Above 6 minutes",
+        "4to6Minutes": "From 4 to 6 minutes",
+        "2to4Minutes": "From 2 to 4 minutes"
+      }
+    },
+    "agents": {
+      "instance": {
+        "newInstance": "New agent - {name}",
+        "newInstanceInstructions": "Create your new agent"
+      },
+      "prev": "Previous",
+      "next": "Next",
+      "create": {
+        "useCase": {
+          "sales": "Sales",
+          "customerService": "Customer Service",
+          "other": "Other",
+          "title": "Use Case"
+        },
+        "creationType": {
+          "title": "Creation Type",
+          "description": "How do you want to create a prompt for your agent to follow?",
+          "usingAI": {
+            "title": "Magically Generate Using AI",
+            "description": "Have AI magically create a prompt for you by uploading a call recording, pasting in your script, or let Air ask you a few questions to get context."
+          },
+          "scratch": {
+            "title": "Scratch",
+            "description": "Start with a fresh blank state and create a prompt from scratch."
+          }
+        },
+        "serviceType": {
+          "title": "Creation Type",
+          "description": "Choose Customer Service Type",
+          "general": {
+            "title": "General",
+            "description": "Let the customer share why they are calling in and answer their questions based off of a general knowledge base. (Ex: A typical cs call where a customer calls in for help)"
+          },
+          "objective": {
+            "title": "Objective Based",
+            "description": "Have your AI follow your specific script hyper closely to accomplish one specific objective. (Ex: Get a referral, survey the customer, complete a temp check, etc.)"
+          }
+        },
+        "editingMode": {
+          "title": "Editing Mode",
+          "advanced": {
+            "description": "Advanced mode allows you to edit AirTask underlying prompt and model. This is for users with more technical context that want to test on a deeper level. Only recommended if you have experience prompting.",
+            "title": "Advanced"
+          },
+          "standard": {
+            "title": "Standard",
+            "description": "Standard mode allows you to launch Airtask faster and with more simplicity. It requires less time and technical skill. It is the recommended for the far majority of our users. If you dont know what to choose, choose this mode."
+          }
+        },
+        "errors": {
+          "title": {
+            "required": "Title is mandatory"
+          }
+        },
+        "dismiss": "Dismiss",
+        "createAgent": "Create agent",
+        "title": "Create new agent",
+        "subtitle": "Start creation process",
+        "agentName": "Agent name",
+        "agentNamePlaceholder": "Insert an agent name"
+      },
+      "column": {
+        "title": "Title",
+        "lastEdited": "Edited at",
+        "type": {
+          "label": "Editor type",
+          "advanced": "Advanced",
+          "standard": "Standard",
+          "form": "Form"
+        }
+      },
+      "search": "Search",
+      "title": "Agents",
+      "meta": {},
+      "editor": {
+        "save": "Save",
+        "mode": {
+          "label": "Mode",
+          "description": "Choose between advanced and standard mode. This can't be changed after creation.",
+          "standard": "Standard",
+          "advanced": "Advanced"
+        },
+        "talkToAgent": "Talk to the Agent",
+        "importantInstructions": {},
+        "knowledgeBase": {
+          "label": "Knowledge base",
+          "description": "Knowledge base will be inserted in your agent knowledge to be able to respond to users most frequent questions easily.",
+          "selectBase": "Select base",
+          "notFound": "No knowledge base found.",
+          "searchBase": "Search",
+          "createNew": "Create new"
+        },
+        "actions": {
+          "noActions": "No actions found",
+          "selectAction": "Select {count, plural, =0 {no followers yet} =1 {one follower} other {# followers}}.",
+          "label": "Actions",
+          "description": "Trigger actions from the users input",
+          "createNew": "Create new",
+          "selectedAction": "{count, plural, =0 {Select an action} =1 {1 action selected} other {# actions selected}}"
+        },
+        "prompt": "Prompt",
+        "loadPreset": "Load Prompt Presents",
+        "voice": {
+          "label": "Voice",
+          "description": "Select the type of voice for your agent",
+          "male": "Male",
+          "female": "Female"
+        },
+        "agentActions": {
+          "delete": {
+            "description": "This action cannot be undone. This preset will no longer be accessible by you or others you&apos;ve shared it with.",
+            "title": "Are you sure you want to proceed?",
+            "confirm": "Agent has been deleted sucessfuly.",
+            "dismiss": "Dismiss",
+            "ok": "Confirm",
+            "label": "Delete agent"
+          },
+          "copyPrompt": "Copy prompt",
+          "label": "Agent actions",
+          "renameAgent": "Rename agent",
+          "copyConfirm": "Prompt copied!",
+          "updateTitle": {
+            "updateTitle": "Update agent name",
+            "title": "Title",
+            "save": "Save"
+          }
+        },
+        "instructions": {
+          "previous": "Previous",
+          "next": "Next",
+          "close": "Close",
+          "label": "Important Instructions",
+          "advanced": {}
+        },
+        "title": "Editing { name }",
+        "errors": {
+          "mandatory": "Mandatory field"
+        },
+        "newLinePlaceholder": "Press \"'{\" to insert a variable",
+        "defaultSeedText": "Hello, '{prospectName'}, how are you?",
+        "waitForResponse": "**Wait for response**",
+        "scriptLanguage": "Language"
+      },
+      "talkToAgent": {
+        "invalidPhoneNumber": "Invalid Phone Number",
+        "action": "Talk to Agent",
+        "prospectName": "Your name",
+        "phoneNumber": "Phone number",
+        "save": "Talk",
+        "talk": "Talk",
+        "title": "Test your agent",
+        "testAgent": "Test Agent",
+        "required": "Mandatory field",
+        "createDebugInteractionSuccess": "Call started successfully",
+        "insufficientFunds": "Insufficiente funds to make this call"
+      }
+    },
+    "instances": {
+      "meta": {},
+      "title": "Flow"
+    },
+    "segments": {
+      "edit": {
+        "errors": {
+          "required": "Required field"
+        },
+        "close": "Close",
+        "label": "Label",
+        "saveChanges": "Save",
+        "createNewSegment": "Create new segment",
+        "segment": "Segment {label}"
+      },
+      "title": "Segment",
+      "actions": {
+        "confirmDeleteWithContactsRelated": "This segment has {contactsCount}. Are you sure you want to proceed?",
+        "delete": "Delete",
+        "confirm": "Confirm deletion",
+        "title": "Actions",
+        "cantDeleteBecauseThereIsFlowsRelated": {
+          "title": "Segment can't be deleted because there are Flows using it.",
+          "description": "One or more Flows are using this segment. So it cannot be deleted."
+        },
+        "deletingItem": "Deleting item",
+        "itemSuccessfullyDeleted": "Item sucessfully deleted"
+      },
+      "column": {
+        "label": "Label",
+        "flow_contacts_count": "Contacts",
+        "flow_instances_count": "In use by"
+      },
+      "createNew": "Create",
+      "search": "Search"
+    },
+    "knowledge": {
+      "create": {
+        "errors": {
+          "title": {
+            "required": "You must provide a title"
+          },
+          "required": "Mandatory field"
+        },
+        "title": "Knowledge Base",
+        "subtitle": "Create a new knowledge base",
+        "dismiss": "Dismiss",
+        "knowledgeTitle": "Title",
+        "createKnowledgeBase": "Create",
+        "newKnowledgeBase": "Editing - {name}",
+        "questionLabel": "Question",
+        "answerLabel": "Answer",
+        "questionInKnowledgeBases": "Question is on {count, plural, =1 {only this knowledge base} other {# knowledge bases}}.",
+        "close": "Close",
+        "saveChanges": "Save",
+        "insertKnowledgeTitle": "Insert knowledge base title",
+        "editQuestion": "Edit Question",
+        "questionPlaceholder": "Insert the question",
+        "answerPlaceholder": "Insert the answer for the question",
+        "knowledgeBasesLabel": "Knowledge Bases",
+        "knowledgeBasesPlaceholder": "Select at least one knowledge base",
+        "knowledgeBasesDescription": "The question can be in one or more knowledge bases",
+        "minLength": "You must provide at least one knowledge base.",
+        "createQuestion": "Create",
+        "addQuestion": "Add Questions and Answers",
+        "addQuestionDescription": "We can use this data to understand and give further context to AI."
+      },
+      "sidenav": {
+        "qa": "Questions",
+        "settings": "Settings"
+      },
+      "edit": {
+        "titleDontMatch": "Titles don't match",
+        "knowledgeBase": "Knowledge Base",
+        "errors": {
+          "required": "Required field"
+        },
+        "form": {
+          "reset": "Reset",
+          "save": "Save",
+          "title": "Edit"
+        }
+      }
+    }
+  },
+  "integrations": {
+    "sidenav": {
+      "settings": "Settings",
+      "api": "API",
+      "webhooks": "Webhooks"
+    },
+    "title": "Integrations",
+    "subtitle": "Manage your integrations",
+    "api": {
+      "keys": {
+        "unnamedPlaceholder": "My Test Key",
+        "create": {
+          "createNew": "Create new secret key",
+          "apiKeyCreatedExplanation": "Your api key was successfully created. For security reasons, you will NOT be able to view it again. Please, store this secret key somewhere safe and accessible. If you lose this key, you'll need to generate a new one.",
+          "name": "Name",
+          "namePlaceholder": "My Test Key",
+          "close": "Close",
+          "create": "Create",
+          "optional": "Optional"
+        },
+        "delete": {
+          "title": "Revoke secret key",
+          "revokeEffects": "By revoking this key, it will be immediately disabled. Any requests made using this key will be reject, and you will not be able to view this key again.",
+          "cancel": "Cancel",
+          "revoke": "Revoke"
+        }
+      }
+    }
+  }
+}

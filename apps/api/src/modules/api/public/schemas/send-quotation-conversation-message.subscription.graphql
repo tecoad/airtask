@@ -1,0 +1,18 @@
+input SendQuotationConversationMessageInput {
+  conversationId: ID!
+  message: String!
+}
+
+type QuotationConversationMessageToken {
+  token: String!
+}
+
+union QuotationConversationMessageResult =
+    QuotationConversationMessage
+  | QuotationConversationMessageToken
+
+ type Subscription {
+  sendQuotationConversationMessage(
+    input: SendQuotationConversationMessageInput!
+  ): QuotationConversationMessageResult
+}

@@ -1,0 +1,15 @@
+input UpdateFlowAgentInput {
+	id: ID!
+	title: String
+	voice: FlowAgentVoice
+	editor_type: FlowAgentEditorType
+	script: String
+	script_schema: JSON
+	script_language: String
+
+	knowledge_base: ID
+}
+
+extend type Mutation {
+	updateFlowAgent(input: UpdateFlowAgentInput!): FlowAgent!
+}

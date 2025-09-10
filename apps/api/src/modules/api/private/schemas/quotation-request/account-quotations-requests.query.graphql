@@ -1,0 +1,54 @@
+type QuotationRequestData {
+  question: String!
+  answer: String!
+}
+
+type QuotationRequest {
+  id: String!
+  sequential_id: String!
+  conversation: QuotationConversation!
+  data: [QuotationRequestData!]
+  date_created: DateTime!
+  date_updated: DateTime
+  # if this is not null, it means that the quotation request has been checked
+  checked_at: DateTime
+  # if checked_at is not null, this is the user who checked the quotation request
+  checked_by: User
+  quotation: Quotation!
+  visualized_at: DateTime
+}
+
+input QuotationRequestSearch {
+  date_created: SortOrder
+  date_updated: SortOrder
+}
+
+input PaginatedQuotationRequestListOptions {
+  take: Int
+  skip: Int
+  sort: QuotationRequestSearch
+}
+
+input QuotationRequestFilter {
+  operator: FilterOperator!
+  quotation: ID
+  recipientQuery: String
+  is_checked: Boolean
+}
+
+type PaginatedQuotationRequestList {
+  items: [QuotationRequest!]!
+  totalItems: Int!
+}
+
+extend type Query {
+  accountQuotationRequests(
+    accountId: ID!
+    pagination: PaginatedQuotationRequestListOptions
+    filter: QuotationRequestFilter
+  ): PaginatedQuotationRequestList!
+  accountQuotationRequest(
+    quotationId: ID!
+    requestSequentialId: ID!
+  ): QuotationRequest
+}

@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		// "rootDir": "./src",
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"target": "ES2021",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"strict": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"module": "CommonJS",
+		"resolveJsonModule": true,
+		"jsx": "react-jsx",
+		"skipLibCheck": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+}

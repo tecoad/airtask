@@ -1,0 +1,23 @@
+{
+	"name": "@airtask/widget-script",
+	"version": "1.0.0",
+	"private": true,
+	"main": "dist/index.js",
+	"scripts": {
+		"codegen": "graphql-codegen --config ./codegen.ts",
+		"dev": "concurrently \"tailwindcss -i src/styles.css -o dist/styles.css --watch --minify\" \"rollup -c -w\" ",
+		"build": "rm -rf dist && tailwindcss -i src/styles.css -o dist/styles.css --minify && rollup -c"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^2.13.1",
+		"concurrently": "^8.2.1",
+		"tailwindcss": "^3.3.3",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"dotenv": "^16.3.1",
+		"rollup": "^3.23.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.34.1"
+	}
+}

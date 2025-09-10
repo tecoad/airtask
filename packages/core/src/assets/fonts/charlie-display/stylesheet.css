@@ -1,0 +1,29 @@
+@font-face {
+	font-family: 'Charlie Display';
+	src:
+		url('CharlieDisplay-Bold.woff2') format('woff2'),
+		url('CharlieDisplay-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Charlie Display';
+	src:
+		url('CharlieDisplay-Ultra.woff2') format('woff2'),
+		url('CharlieDisplay-Ultra.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Charlie Display';
+	src:
+		url('CharlieDisplay-Regular.woff2') format('woff2'),
+		url('CharlieDisplay-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}

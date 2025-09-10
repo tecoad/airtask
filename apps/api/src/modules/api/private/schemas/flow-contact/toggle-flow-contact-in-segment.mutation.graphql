@@ -1,0 +1,14 @@
+enum ToggleFlowContactInSegmentMode {
+	ADD
+	REMOVE
+}
+
+input ToggleFlowContactInSegmentInput {
+	contactId: [ID!]!
+	segmentId: ID!
+	mode: ToggleFlowContactInSegmentMode!
+}
+
+extend type Mutation {
+	toggleFlowContactInSegment(input: ToggleFlowContactInSegmentInput): [FlowContact!]!
+}

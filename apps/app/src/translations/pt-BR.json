@@ -1,0 +1,965 @@
+{
+  "404": {
+    "title": "404",
+    "message": "Não foi possível encontrar esta página.",
+    "return": "Voltar"
+  },
+  "header": {
+    "menu": {
+      "dashboard": "Painel",
+      "accountSettings": "Configurações da Conta",
+      "billing": "Faturamento",
+      "help": "Ajuda",
+      "affiliate": "Afiliado",
+      "modules": {
+        "label": "Módulos",
+        "quotation": "Cotação",
+        "knowledgeBase": "Base de Conhecimento",
+        "call": {},
+        "flow": {
+          "label": "Flow",
+          "contacts": "Contatos",
+          "recordings": "Gravações",
+          "agents": "Agentes",
+          "segments": "Segmentos",
+          "instances": "Instâncias"
+        }
+      },
+      "integrations": "Integrações"
+    },
+    "account": {
+      "logout": "Sair",
+      "manage": "Gerenciar",
+      "personal": "Pessoal"
+    },
+    "billing": {},
+    "searchUserPlaceholder": "Pesquisar usuário...",
+    "darkMode": "Modo escuro",
+    "lightMode": "Modo claro",
+    "languages": {
+      "english": "Inglês",
+      "portuguese": "Português"
+    }
+  },
+  "quotation": {
+    "edit": {
+      "title": "Editando `{question}`",
+      "subtitle": "Edite as perguntas que irão treinar sua IA",
+      "dismiss": "Cancelar",
+      "save": "Salvar",
+      "enabled": "Habilitado",
+      "disabled": "Desabilitado",
+      "confirm": "Confirmar exclusão?",
+      "confirmHasChild": "Esta pergunta tem outras perguntas aninhadas {questionsNumber}. \nAo excluí-la, todas as outras perguntas serão excluídas. \nConfirme?",
+      "addConditionPlaceholder": "Faça outra pergunta",
+      "ask": "Então perguntar",
+      "questionPlaceholder": "Insira uma pergunta",
+      "ifAnswerIs": "Se a resposta for",
+      "errors": {
+        "mandatory": "Campo obrigatório",
+        "minimumCharacters": "Deve ter pelo menos {number} caracteres.",
+        "endsWithInterrogation": "Uma pergunta deve terminar com um ponto de interrogação (?)",
+        "invalidCondition": "Condição inválida",
+        "minimumQuestions": "Uma instância deve ter pelo menos {número} pergunta(s)."
+      },
+      "editQuestions": "Perguntas"
+    },
+    "updatedItems": "Itens atualizados",
+    "itemsUpdating": "Atualizando itens...",
+    "sidenav": {
+      "edit": "Editar",
+      "settings": "Configurações",
+      "widget": "Widget",
+      "install": "Instalação",
+      "requests": "Solicitações Recebidas",
+      "overview": "Visão geral",
+      "promptInstructions": "Instruções de Prompt"
+    },
+    "overview": {
+      "totalRequests": "Solicitações Totais"
+    },
+    "requests": {
+      "markAs": "Marcar como",
+      "status": "Situação",
+      "pending": "Pendente",
+      "done": "Processado",
+      "notFound": "Solicitação não encontrada",
+      "title": "Solicitação",
+      "infos": "Informações",
+      "column": {
+        "id": "Id",
+        "from": "De",
+        "date": "Data",
+        "status": "Situação"
+      },
+      "actions": "Ações",
+      "setAsPending": "Marcar como Pendente",
+      "setAsDone": "Marcar como Processado",
+      "search": "Busque por uma solicitação...",
+      "edit": "Editar",
+      "changeStatus": "Alterar status"
+    },
+    "settings": {
+      "delete": {
+        "title": "Excluir instância",
+        "description": "Ao excluir uma instância, todos os seus dados e configurações desaparecerão. \nEsta ação é irreversível.",
+        "button": "Excluir instância",
+        "confirm": {
+          "ask": "Insira o título da instância {quotation} para excluí-la. \nEsta ação não pode ser desfeita.",
+          "title": "Confirmar exclusão"
+        }
+      },
+      "form": {
+        "title": "Título",
+        "reset": "Limpar",
+        "save": "Salvar"
+      },
+      "status": {
+        "title": "Status",
+        "description": "Altere a visibilidade do seu módulo. \nOs módulos desativados não serão mais interativos."
+      },
+      "title": "Configurações do módulo",
+      "subtitle": "Gerencie as configurações do seu módulo",
+      "quotation": "Cotação",
+      "titleDontMatch": "O título digitado não corresponde."
+    },
+    "title": "Instância: {title}",
+    "itemUpdated": "Item atualizado",
+    "widget": {
+      "title": "Widget",
+      "subtitle": "Gerencie as configurações do seu widget"
+    },
+    "updatingItems": "Atualizando status de {count} itens...",
+    "instance": {
+      "newInstance": "Novo módulo – {name}",
+      "newInstanceInstructions": "Adicione as perguntas que você deve fazer ao usuário para gerar a cotação.",
+      "instanceUpdated": "Instance {instance} atualizada com sucesso!",
+      "instanceCreated": "Instância {instance} criada!"
+    },
+    "instructions": {
+      "title": "Instruções",
+      "subtitle": "Dê mais contexto à sua IA",
+      "form": {
+        "save": "Salvar",
+        "reset": "Save",
+        "about": {
+          "generateByIA": "Gerar com IA",
+          "title": "Sobre seu negócio",
+          "description": "Ajude sua AI a agir com mais contexto.",
+          "howTo": "Conte sobre o seu negócio: nome, em que localidade você está, onde atua, como atua... etc."
+        }
+      }
+    },
+    "quotation": "Cotação",
+    "create": {
+      "dismiss": "Cancelar",
+      "errors": {
+        "title": {
+          "required": "Campo obrigatório"
+        }
+      },
+      "title": "Criar Instance",
+      "subtitle": "Crie uma nova instancia do módulo",
+      "instanceTitle": "Título",
+      "createInstance": "Criar",
+      "instanceTitlePlaceholder": "Insira um título"
+    }
+  },
+  "modules": {
+    "install": {
+      "shareLink": {
+        "title": "Link compartilhável",
+        "description": "Compartilhe um link que leva ao seu widget"
+      },
+      "embed": {
+        "subtitle": "Adicione o widget no seu site ou aplicação",
+        "instructions": "Insira este código antes do final da tag <body> do seu site.",
+        "title": "Instale o widget"
+      },
+      "instructions": "Para personalizar a aparência do seu widget, acesse a página de configurações do widget.",
+      "previewWidget": {
+        "title": "Visualize o widget no seu site",
+        "description": "Insira a URL do seu site e veja como ficará",
+        "goToWebsite": "Ver na url"
+      }
+    },
+    "create": {},
+    "createNew": "Novo",
+    "noInstance": "Você ainda não criou nenhuma instância.",
+    "noInstanceSearch": "Nenhuma instância encontrada.",
+    "select": "Selecione",
+    "searchItem": "Buscar",
+    "knowledge": {
+      "title": "Base de conhecimento"
+    }
+  },
+  "ui": {
+    "confirm": "Confirmar",
+    "dismiss": "Cancelar",
+    "dataTable": {
+      "asc": "Ascendente",
+      "desc": "Descendente",
+      "hide": "Ocultar",
+      "toggleColumns": "Visualizar Colunas",
+      "noResults": "Sem resultados",
+      "view": "Ver",
+      "rowsPerPage": "por página",
+      "pageOf": "Página {current} de {last}",
+      "selectedOfTotal": "{selected} de {total} {total, plural, =1 {linha} other {linhas}} selecionadas",
+      "totalItems": "{total, plural, =0 {nenhuma linha} =1 {# linhas} other {# linhas}}"
+    },
+    "dropzone": {
+      "anyFileType": "arquivos de até 2MB",
+      "fileType": "{ types }",
+      "clickToUpload": "Clique para carregar",
+      "orDrop": "Solte o arquivo aqui",
+      "orDrag": "Arraste um arquivo aqui"
+    },
+    "colorPicker": {
+      "pickColor": "Selecione uma cor"
+    },
+    "createNew": "Criar novo",
+    "multiselect": {
+      "placeholder": "Selecione..."
+    },
+    "deletionCard": {
+      "delete": {
+        "confirm": {
+          "ask": "Insira o título {type} \"{title}\" para excluí-lo. ",
+          "title": "Confirmar exclusão?",
+          "cantUndo": "Essa ação não pode ser desfeita."
+        },
+        "button": "Excluir",
+        "description": "Ao excluí-lo, todos os seus dados e configurações desaparecerão. \nEsta ação é irreversível.",
+        "title": "Exclusão"
+      }
+    }
+  },
+  "auth": {
+    "verifyEmail": {
+      "codeSent": "Um código foi enviado para seu e-mail",
+      "success": "Sucesso!",
+      "invalidLink": "Seu link é inválido",
+      "expiredLink": "Seu link expirou",
+      "title": "Verificar e-mail",
+      "resendLink": "Reenviar link"
+    },
+    "passwordReset": {
+      "success": "Sucesso!",
+      "instructionsSent": "Siga as instruções enviadas para seu e-mail para redefinir sua senha.",
+      "linkInvalid": "Este link de redefinição de senha não é mais válido. Solicite um novo e tente novamente.",
+      "title": "Redefinição de senha",
+      "newPassword": "Nova Senha",
+      "linkSend": "Um link foi enviado para seu e-mail. \nAcesse-o para finalizar a redefinição de senha.",
+      "requestLink": "Solicitar novo link",
+      "email": "Seu email",
+      "recoverPassword": "Recuperar senha",
+      "description": "Recupere o acesso à sua conta",
+      "confirmNewPassword": "Confirme a nova senha",
+      "changePassword": "Alterar a senha"
+    },
+    "register": {
+      "disclaimer": "Ao clicar em continuar, você concorda com nossos <terms>Termos de Serviço</terms> e <privacy>Política de Privacidade</privacy>.",
+      "button": "Cadastro",
+      "password": "Senha",
+      "description": "Criar conta",
+      "title": "Cadastro",
+      "firstname": "Primeiro nome",
+      "lastname": "Sobrenome",
+      "email": "Email",
+      "instruction": "Digite seu e-mail abaixo para criar sua conta",
+      "linkSent": "Um link foi enviado para seu e-mail. \nAcesse-o para finalizar a configuração da sua conta.",
+      "verifyEmail": "Por favor verifique seu email."
+    },
+    "errors": {
+      "emailInvalid": "Digite um endereço de e-mail válido",
+      "emailInUse": "Email já em uso",
+      "passwordsDontMatch": "As senhas não coincidem",
+      "mandatory": "Campo Obrigatório",
+      "invalidCredentials": "E-mail ou senha está incorreto"
+    },
+    "login": {
+      "title": "Conecte-se",
+      "instruction": "Digite seu e-mail e senha abaixo para fazer login em sua conta.",
+      "email": "Email",
+      "button": "Entrar",
+      "password": "Senha",
+      "forgotPassword": "Esqueceu sua senha?",
+      "description": "Bem vindo(a) de volta!"
+    },
+    "quote": {
+      "text": "A única coisa constante na vida é a mudança.",
+      "author": "Heráclito"
+    }
+  },
+  "meta": {
+    "quotation": {
+      "title": "Cotação - {title}"
+    },
+    "modules": {},
+    "dashboard": {
+      "title": "Painel"
+    },
+    "billing": {
+      "purchase-credits": {}
+    },
+    "brand": "Airtask",
+    "integrations": {}
+  },
+  "help": {
+    "title": "Reporte um Problema",
+    "subtitle": "Nos conte como podemos ajudá-lo",
+    "form": {
+      "email": "Email",
+      "emailPlaceholder": "Seu email",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Insira um assunto",
+      "issue": "Message",
+      "submit": "Enviar",
+      "issuePlaceholder": "Descreva como podemos ajudar",
+      "errors": {
+        "email": "Email é obrigatório"
+      }
+    },
+    "submited": "Sua mensagem foi recebida por nossa equipe. O ticket gerado é #{ticket}."
+  },
+  "affiliates": {
+    "comissions": {
+      "status": {
+        "paid": "Pago",
+        "pending": "Pendente"
+      },
+      "column": {
+        "amount": "Valor",
+        "status": "Situação",
+        "date": "Data"
+      },
+      "title": "Comissões",
+      "subtitle": "Acompanhe seus ganhos",
+      "filterStatus": "Situação"
+    },
+    "sidenav": {
+      "settings": "Configurações",
+      "comissions": "Comissões",
+      "overview": "Visão geral"
+    },
+    "overview": {
+      "fromLastMonth": "{value} do mês passado",
+      "totalAffiliates": "Total de afiliados",
+      "pendingToReceive": "Pendente para receber",
+      "nextPaymentAt": "Próximo pagamento em { date }"
+    },
+    "settings": {
+      "errors": {
+        "invalidPassword": "A senha não é válida",
+        "methodNotValid": "Método não válido",
+        "mandatory": "Campo obrigatório",
+        "aliasNotAvailable": "O alias { alias } não está disponível",
+        "emailNotValid": "E-mail inválido"
+      },
+      "form": {
+        "alias": "Alias",
+        "confirmSubmit": {
+          "description": "Alterar seu alias modificará seu link de afiliado e seu link antigo será desativado e inutilizado. \nTem certeza?",
+          "confirm": "Confirmar",
+          "title": "Confirmar alteração do alias?"
+        },
+        "yourUrl": "Sua url:",
+        "copiedUrl": "Copiado!",
+        "save": "Salvar",
+        "dismiss": "Cancelar",
+        "copyUrl": "Copiar URL",
+        "confirmPassword": "Confirme sua senha",
+        "payout_method": "Método de pagamento",
+        "payout_placeholder": "Selecione um método",
+        "payout_method_key": {
+          "pix": "Chave Pix",
+          "paypal": "Email do Paypal"
+        }
+      },
+      "subtitle": "Gerencie suas configurações de afiliado.",
+      "title": "Configurações de afiliados"
+    },
+    "title": "Painel de afiliados",
+    "subtitle": "Gerencie sua conta de afiliação"
+  },
+  "settings": {
+    "sidenav": {
+      "user": "Usuário",
+      "widget": "Widget"
+    },
+    "user": {
+      "language": "Idioma da Conta",
+      "languages": {
+        "english": "Inglês",
+        "portuguese": "Português"
+      },
+      "save": "Salvar",
+      "subtitle": "Atualize as informações do seu perfil e gerencie as configurações da sua conta.",
+      "lastname": "Sobrenome",
+      "title": "Configurações do Usuário",
+      "firstname": "Primeiro nome",
+      "confirmChange": {
+        "title": "Confirmar alteração",
+        "subtitle": "Por favor, confirme sua senha atual para salvar as alterações.",
+        "currentPassword": "Senha",
+        "confirm": "Confirmar alteração"
+      },
+      "email": "Email",
+      "confirmPassword": "Confirme nova senha",
+      "password": "Alterar a senha",
+      "cancel": "Cancelar"
+    },
+    "widget": {
+      "windowConfig": {
+        "addNewDomain": "Adicionar novo domínio",
+        "hidePoweredBy": "Ocultar 'Desenvolvido pela Airtask' (marca Airtask)",
+        "allowedDomains": "Domínios permitidos",
+        "fontSize": "Tamanho da fonte",
+        "avatar": {
+          "title": "Avatar",
+          "description": "Escolha um avatar para o seu bot"
+        },
+        "windowWidth": "Largura janela",
+        "googleFont": {
+          "title": "Google Font"
+        },
+        "initiallyOpen": "Iniciar aberto?",
+        "initiallyOpenDesc": "Inicie o widget de bate-papo aberto",
+        "hidePoweredByDesc": "Não mostre a marca Airtask em seu widget",
+        "mainColor": "Cor Principal",
+        "position": "Posição",
+        "subtitle": "Personalize o ícone de chat que será exibido no seu site.",
+        "title": "Configuração de widget",
+        "widgetTitle": "Título",
+        "windowHeight": "Altura janela",
+        "themes": {
+          "title": "Temas disponíveis",
+          "dark": "Escuro",
+          "light": "Claro",
+          "both": "Ambos",
+          "placeholder": "Selecione os temas disponíveis"
+        },
+        "positions": {
+          "TopRight": "Superior Direito",
+          "TopLeft": "Superior Esquerdo",
+          "BottomRight": "Inferior Direito",
+          "BottomLeft": "Inferior Esquerdo"
+        },
+        "selectPosition": "Selecione uma posição"
+      },
+      "globalSettings": {
+        "title": "Use as configurações globais do widget",
+        "description": "Carregaremos a configuração definida no nível da conta"
+      },
+      "buttonConfig": {
+        "buttonFontSize": "Tamanho da fonte",
+        "buttonIconColor": "Cor do ícone",
+        "buttonTextColor": "Cor do texto",
+        "icon": {
+          "description": "Adicione um ícone para o botão",
+          "title": "Ícone"
+        },
+        "buttonColor": "Cor de fundo",
+        "title": "Botão Widget",
+        "buttonHeight": "Altura",
+        "distanceFromBorder": "Distância da borda",
+        "buttonText": "Texto",
+        "subtitle": "Personalize o botão de chat que será exibido no seu site."
+      },
+      "widgetPreview": {
+        "fakeUserMessage": "Este é um exemplo de resposta!",
+        "fakeBotMessage": "Bem-vindo à minha IA personalizada!"
+      },
+      "dismiss": "Cancelar",
+      "previewWidget": "Ver Widget",
+      "updateSettings": "Salvar",
+      "defaultTitle": "Título do widget"
+    },
+    "title": "Configurações de Conta",
+    "errors": {
+      "widgetSettings": {
+        "main_color_hex": "Deve ser um código HEX válido. Exemplo: #000000"
+      },
+      "user": {
+        "passwordsDontMatch": "As senhas não coincidem",
+        "emailInvalid": "Digite um endereço de e-mail válido",
+        "emailInUse": "Email já em uso",
+        "wrongPassword": "Senha incorreta. Por favor, tente novamente.",
+        "mandatory": "Campo Obrigatório",
+        "currentPassword": "Por favor insira sua senha atual"
+      }
+    },
+    "subtitle": "Gerencie as configurações da sua conta.",
+    "meta": {}
+  },
+  "dashboard": {
+    "onboardingSteps": {
+      "quotation": {
+        "receive_first_quotation_request": {
+          "execDescription": "Receba sua primeira solicitação",
+          "title": "Receba seu primeiro pedido de orçamento"
+        },
+        "create_first_quotation": {
+          "title": "Crie a primeira cotação",
+          "execDescription": "Crie sua primeira cotação e comece a receber solicitações de seus clientes."
+        },
+        "setup_widget_settings": {
+          "execDescription": "Defina a aparência do seu widget da maneira que desejar para impressionar seus clientes.",
+          "title": "Personalize seu widget"
+        },
+        "first_quotation_copy_link": {
+          "execDescription": "Copie o URL da sua primeira cotação e compartilhe com seus clientes.",
+          "title": "Copiar link de compartilhamento"
+        },
+        "title": "Cotação"
+      },
+      "finishNow": "Termine agora",
+      "percentProgress": "{ percent }% concluído",
+      "finishedAt": "Concluído em {date} às {time}",
+      "showSteps": "Mostrar etapas",
+      "hideSteps": "Ocultar etapas"
+    },
+    "welcome": "Bem-vindo(a) {firstname}!",
+    "access": "Seu último acesso foi em { time }."
+  },
+  "billing": {
+    "intervals": {
+      "month": "Mensal",
+      "year": "Anual"
+    },
+    "payment_failed": "Pagamento atrasado",
+    "subtitle": "Veja como está seu uso de faturamento",
+    "buyCredits": "Comprar créditos",
+    "currentPlan": "Plano atual",
+    "usageThisMonth": "Uso este mês",
+    "title": "Cobrança",
+    "administratePlan": "Administrar Plano",
+    "purchaseCredits": {},
+    "purchase-credits": {},
+    "balance": "Saldo"
+  },
+  "plans": {
+    "billedMonthly": "Cobrança Mensal",
+    "annual": "Anual",
+    "monthly": "Mensalmente",
+    "startTrial": "Iniciar trial",
+    "title": "Planos",
+    "subtitle": "Você precisa selecionar um plano para prosseguir",
+    "perDuration": "por <br></br> {duration}",
+    "selectPlan": "Selecionar plano",
+    "save": "Economize { value }",
+    "month": "mês",
+    "year": "ano",
+    "selectCurrency": "Selecionar moeda",
+    "selectCurrencyPlaceholder": "Selecione uma moeda"
+  },
+  "success": {
+    "title": "Sucesso!",
+    "message": "Sua transação foi realizada com sucesso.\nAgora você pode ativar seus serviços.",
+    "goToDashboard": "Ir para a página inicial"
+  },
+  "flow": {
+    "contacts": {
+      "sidenav": {},
+      "meta": {},
+      "title": "Contatos",
+      "column": {
+        "firstname": "Nome",
+        "lastname": "Sobrenome",
+        "email": "Email",
+        "phone": "Telefone",
+        "segments": "Segmentos",
+        "metadata": "Metadata",
+        "status": "Situação"
+      },
+      "actions": "Ações",
+      "edit": "Editar",
+      "changeStatus": "Alterar Status",
+      "status": "Situação",
+      "search": "Buscar",
+      "importing": {
+        "selectAFileToUpload": "Selecionar arquivo",
+        "processingImport": "Processando Importação",
+        "errors": {
+          "invalidCsvColumnsStructure": "Colunas CSV inválidas",
+          "invalidFileFormat": "Formato de arquivo inválido",
+          "noItemsFound": "Nenhum contato encontrado no arquivo fornecido",
+          "selectASegment": "Selecione um segmento",
+          "selectAFile": "Selecione um arquivo"
+        },
+        "processingFile": "Importando {contacts, plural, =1 {# contato} other {# contatos}}.",
+        "windowClosingAt": "Fechando janela em {secondsLeft, plural, =1 {# segundo} other {# segundos}}.",
+        "import": "Importar",
+        "previous": "Anterior",
+        "next": "Próximo",
+        "selectSegment": {
+          "description": "Selecione um segmento para o qual importar seus contatos.",
+          "label": "Segmento",
+          "title": "Importar contatos"
+        },
+        "close": "Fechar",
+        "emailNotification": "Você receberá os resultados finais por e-mail assim que a importação for concluída.",
+        "downloadFileExample": "Baixar arquivo modelo"
+      },
+      "oneOrMoreItemsUpdating": "Atualizando {count, plural, =1 {contato} other {contatos}}.",
+      "oneOrMoreItemsUpdated": "Atualizando {count, plural, =1 {contato} other {contatos}}.",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "segment": "Segmento",
+      "setAsStatus": "Alterar para {status}",
+      "addToSegment": "Incluir segmento",
+      "removeFromSegment": "Remover do segmento"
+    },
+    "campaigns": {
+      "meta": {},
+      "column": {
+        "name": "Nome",
+        "type": "Tipo",
+        "dailyBudget": "Orçamento Diário",
+        "status": "Situação",
+        "segment": "Segmento",
+        "agent": "Agente",
+        "dials": "Discagens",
+        "pickups": "Atendidos"
+      },
+      "actions": "Ações",
+      "create": "Criar",
+      "search": "Buscar",
+      "edit": "Editar",
+      "changeStatus": "Alterar situação",
+      "editOrCreate": {
+        "instanceName": "Instância {name}",
+        "createNewInstance": "Criar Nova",
+        "selectAgent": "Selecionar Agente",
+        "name": "Nome",
+        "createNewAgent": "Criar novo agente",
+        "selectSegment": "Selecionar Segmento",
+        "createNewSegment": "Criar novo segmento",
+        "inbound": "Inbound",
+        "outbound": "Outbound",
+        "type": "Tipo",
+        "status": "Situação",
+        "active": "Ativo",
+        "paused": "Pausado",
+        "dailyBudget": "Orçamento Diário",
+        "close": "Fechar",
+        "saveChanges": "Salvar",
+        "selectSegmentPlaceholder": "Selecione um segmento",
+        "selectAgentPlaceholder": "Selecione ou crie um agente",
+        "selectTypePlaceholder": "Selecione um tipo de flow"
+      },
+      "active": "Ativo",
+      "paused": "Pausado",
+      "stopped": "Interrompido",
+      "inbound": "Inbound",
+      "outbound": "Outbound",
+      "itemSuccessfullyDeleted": "Item excluído!",
+      "deletingItem": "Excluindo item",
+      "errors": {
+        "selectAAgent": "Você deve selecionar um agente.",
+        "required": "Campo obrigatório",
+        "selectASegment": "Você deve selecionar um segmento para uma campanha de Outbound."
+      },
+      "oneOrMoreItemsUpdating": "Atualizando {count, plural, =1 {item} other {itens}}.",
+      "oneOrMoreItemsUpdated": "{count, plural, =1 {# item} other {# itens}} atualizados com sucesso.",
+      "delete": "Excluir",
+      "status": "Status"
+    },
+    "recordings": {
+      "title": "Gravações",
+      "meta": {},
+      "column": {
+        "contact": "Contato",
+        "number": "Número",
+        "campaign": "Campanha",
+        "type": "Tipo",
+        "date": "Data",
+        "status": "Situação",
+        "duration": "Duração",
+        "recording": "Gravação",
+        "transcript": "Transcrição"
+      },
+      "search": "Buscar",
+      "campaign": "Campanha",
+      "duration": "Duração",
+      "status": "Status",
+      "durations": {
+        "upTo2Minutes": "Até 2 minutos",
+        "above6Minutes": "Acima de 6 minutos",
+        "4to6Minutes": "De 4 a 6 minutos",
+        "2to4Minutes": "De 2 a 4 minutos"
+      }
+    },
+    "agents": {
+      "instance": {
+        "newInstance": "Novo agente - {name}",
+        "newInstanceInstructions": "Crie seu novo agente"
+      },
+      "prev": "Anterior",
+      "next": "Próximo",
+      "create": {
+        "useCase": {
+          "sales": "Vendas",
+          "customerService": "Atendimento ao cliente",
+          "other": "Outro",
+          "title": "Caso de uso"
+        },
+        "creationType": {
+          "title": "Tipo de criação",
+          "description": "Como você deseja criar um prompt para seu agente seguir?",
+          "usingAI": {
+            "title": "Gerar magicamente usando IA",
+            "description": "Faça com que a IA crie magicamente um prompt para você, enviando uma gravação de chamada, colando seu script ou deixe o Air fazer algumas perguntas para obter contexto."
+          },
+          "scratch": {
+            "title": "Fazer do início",
+            "description": "Comece com um novo estado em branco e crie um prompt do zero."
+          }
+        },
+        "serviceType": {
+          "title": "Tipo de criação",
+          "description": "Escolha o tipo de atendimento ao cliente",
+          "general": {
+            "title": "Geral",
+            "description": "Deixe o cliente compartilhar por que está ligando e responda às suas perguntas com base em uma base de conhecimento geral. \n(Ex: uma chamada típica de atendimento em que um cliente pede ajuda)"
+          },
+          "objective": {
+            "title": "Baseado em Objetivo",
+            "description": "Faça com que sua IA siga seu script específico de perto para atingir um objetivo específico. \n(Ex: Obtenha uma indicação, pesquise o cliente, conclua uma verificação temporária, etc.)"
+          }
+        },
+        "editingMode": {
+          "title": "Modo de edição",
+          "advanced": {
+            "description": "O modo avançado permite editar o prompt e o modelo subjacente do AirTask. \nIsto é para usuários com contexto mais técnico que desejam testar em um nível mais profundo. \nRecomendado apenas se você tiver experiência em solicitações.",
+            "title": "Avançado"
+          },
+          "standard": {
+            "title": "Padrão",
+            "description": "O modo padrão permite iniciar o Airtask com mais rapidez e simplicidade. \nRequer menos tempo e habilidade técnica. \nÉ o recomendado para a grande maioria de nossos usuários. \nSe você não sabe o que escolher, escolha este modo."
+          }
+        },
+        "errors": {
+          "title": {
+            "required": "O título é obrigatório"
+          }
+        },
+        "dismiss": "Cancelar",
+        "createAgent": "Criar agente",
+        "title": "Criar novo agente",
+        "subtitle": "Iniciar processo de criação",
+        "agentName": "Nome do agente",
+        "agentNamePlaceholder": "Insira um nome de agente"
+      },
+      "column": {
+        "title": "Título",
+        "lastEdited": "Editado em",
+        "type": {
+          "label": "Editor",
+          "advanced": "Avançado",
+          "standard": "Padrão",
+          "form": "Formulário"
+        }
+      },
+      "search": "Search",
+      "title": "Agentes",
+      "meta": {},
+      "editor": {
+        "mode": {
+          "label": "Modo",
+          "description": "Escolha entre o modo avançado e padrão. \nIsso não pode ser alterado após a criação.",
+          "standard": "Padrão",
+          "advanced": "Avançado"
+        },
+        "importantInstructions": {},
+        "knowledgeBase": {
+          "label": "Base de conhecimento",
+          "description": "A base de conhecimento será inserida no conhecimento do seu agente para poder responder facilmente às dúvidas mais frequentes dos usuários.",
+          "notFound": "Nenhuma base de conhecimento encontrada.",
+          "searchBase": "Buscar",
+          "selectBase": "Selecionar",
+          "createNew": "Criar novo"
+        },
+        "actions": {
+          "noActions": "Nenhuma ação encontrada",
+          "selectAction": "Selecione uma ação",
+          "label": "Ações",
+          "description": "Acionar ações a partir da entrada dos usuários",
+          "selectedAction": "{count, plural, =0 {Selecione uma ação} =1 {1 ação selecionada} other {# ações selecionadas}}",
+          "createNew": "Criar novo"
+        },
+        "talkToAgent": "Falar com agente",
+        "loadPreset": "Carregar Preset",
+        "voice": {
+          "label": "Voz",
+          "description": "Selecione o tipo de voz do seu agente",
+          "male": "Homem",
+          "female": "Feminina"
+        },
+        "agentActions": {
+          "delete": {
+            "description": "Essa ação não pode ser desfeita. \nEsta predefinição não estará mais acessível para você ou outras pessoas",
+            "title": "Tem certeza de que deseja prosseguir?",
+            "confirm": "O agente foi excluído com sucesso.",
+            "dismiss": "Cancelar",
+            "ok": "Confirmar exclusão",
+            "label": "Exluir agente"
+          },
+          "label": "Ações do agente",
+          "copyPrompt": "Copiar prompt",
+          "renameAgent": "Renomear Agente",
+          "copyConfirm": "Prompt copiado para a area de transferência!",
+          "updateTitle": {
+            "updateTitle": "Atualizar nome do agente",
+            "title": "Título",
+            "save": "Salvar"
+          }
+        },
+        "instructions": {
+          "previous": "Anterior",
+          "next": "Próximo",
+          "label": "Instruções importantes",
+          "advanced": {},
+          "close": "Fechar"
+        },
+        "title": "Editando { name }",
+        "errors": {
+          "mandatory": "Campo obrigatório"
+        },
+        "save": "Salvar",
+        "prompt": "Prompt",
+        "newLinePlaceholder": "Pressione \"'{\"  para inserir uma variável",
+        "defaultSeedText": "Olá, '{prospectName'}, como vai?",
+        "waitForResponse": "**Aguardar pela resposta**",
+        "scriptLanguage": "Idioma"
+      },
+      "talkToAgent": {
+        "invalidPhoneNumber": "Número de telefone inválido",
+        "title": "Teste seu Agente",
+        "required": "Campo obrigatório",
+        "action": "Fale com o agente",
+        "prospectName": "Seu nome",
+        "talk": "Falar",
+        "testAgent": "Testar agente",
+        "phoneNumber": "Telefone",
+        "save": "Ligar",
+        "createDebugInteractionSuccess": "Ligação iniciada com sucesso",
+        "insufficientFunds": "Fundos insuficientes para fazer esta chamada"
+      }
+    },
+    "instances": {
+      "meta": {},
+      "title": "Flow"
+    },
+    "segments": {
+      "edit": {
+        "errors": {
+          "required": "Campo obrigatório"
+        },
+        "close": "Fechar",
+        "label": "Rótulo",
+        "saveChanges": "Salvar",
+        "createNewSegment": "Criar novo segmento",
+        "segment": "Segmento {label}"
+      },
+      "title": "Segmento",
+      "actions": {
+        "confirmDeleteWithContactsRelated": "Este segmento tem {contactsCount}. Tem certeza de que deseja prosseguir?",
+        "delete": "Excluir",
+        "confirm": "Confirmar exclusão?",
+        "title": "Ações",
+        "cantDeleteBecauseThereIsFlowsRelated": {
+          "title": "O segmento não pode ser excluído porque há Flows que o utilizam.",
+          "description": "Um ou mais fluxos estão usando este segmento. Portanto, não pode ser excluído."
+        },
+        "deletingItem": "Excluindo item",
+        "itemSuccessfullyDeleted": "Item excluído com sucesso"
+      },
+      "column": {
+        "label": "Título",
+        "flow_contacts_count": "Contatos",
+        "flow_instances_count": "Em uso por"
+      },
+      "createNew": "Criar",
+      "search": "Buscar"
+    },
+    "knowledge": {
+      "create": {
+        "errors": {
+          "title": {
+            "required": "Você deve fornecer um título"
+          },
+          "required": "Campo obrigatório"
+        },
+        "title": "Base de conhecimento",
+        "subtitle": "Crie uma nova base de conhecimento",
+        "dismiss": "Cancelar",
+        "knowledgeTitle": "Título",
+        "createKnowledgeBase": "Criar",
+        "newKnowledgeBase": "Editando - {nome}",
+        "questionLabel": "Pergunta",
+        "answerLabel": "Resposta",
+        "questionInKnowledgeBases": "Pergunta também em {count, plural, =1 {outra # knowledge base} other {# knowledge bases}}.",
+        "close": "Fechar",
+        "insertKnowledgeTitle": "Insira uma ",
+        "editQuestion": "Editar pergunta",
+        "questionPlaceholder": "Insira a pergunta",
+        "answerPlaceholder": "Insira a resposta da pergunta",
+        "knowledgeBasesLabel": "Bases de conhecimento",
+        "knowledgeBasesPlaceholder": "Selecione pelo menos uma base de conhecimento",
+        "knowledgeBasesDescription": "A pergunta pode estar em uma ou mais bases de conhecimento",
+        "minLength": "Você deve fornecer pelo menos uma base de conhecimento.",
+        "createQuestion": "Criar",
+        "saveChanges": "Salvar",
+        "addQuestion": "Adicione perguntas e respostas",
+        "addQuestionDescription": "Podemos usar esses dados para compreender e contextualizar melhor a IA."
+      },
+      "sidenav": {
+        "qa": "Perguntas",
+        "settings": "Configurações"
+      },
+      "edit": {
+        "titleDontMatch": "Os títulos não correspondem",
+        "knowledgeBase": "Base de conhecimento",
+        "errors": {
+          "required": "Campo obrigatório"
+        },
+        "form": {
+          "reset": "Reiniciar",
+          "save": "Salvar",
+          "title": "Editar"
+        }
+      }
+    }
+  },
+  "integrations": {
+    "sidenav": {
+      "settings": "Configurações",
+      "api": "API",
+      "webhooks": "Webhooks"
+    },
+    "title": "Integrações",
+    "subtitle": "Gerencie suas integrações",
+    "api": {
+      "keys": {
+        "unnamedPlaceholder": "Minha chave de teste",
+        "create": {
+          "createNew": "Criar uma nova chave secreta",
+          "apiKeyCreatedExplanation": "Sua chave de API foi criada com sucesso. \nPor motivos de segurança, você NÃO poderá visualizá-lo novamente.\nPor favor, guarde esta chave secreta em algum lugar seguro e acessível. \nSe você perder esta chave, precisará gerar uma nova.",
+          "name": "Nome",
+          "namePlaceholder": "Minha chave de teste",
+          "create": "Criar",
+          "close": "Fechar",
+          "optional": "Opcional"
+        },
+        "delete": {
+          "title": "Revogar chave secreta",
+          "revokeEffects": "Ao revogar esta chave, ela será imediatamente desativada. \nQuaisquer solicitações feitas usando esta chave serão rejeitadas e você não poderá visualizá-la novamente.",
+          "cancel": "Cancelar",
+          "revoke": "Revogar"
+        }
+      }
+    }
+  }
+}

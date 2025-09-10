@@ -1,0 +1,23 @@
+{
+	"private": true,
+	"scripts": {
+		"build": "nx run-many -t build",
+		"dev": "nx run-many -t dev",
+		"dev:sec": "nx run-many -t dev:sec",
+		"lint": "nx lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\""
+	},
+	"devDependencies": {
+		"@airtask/eslint-config": "*",
+		"nx": "16.9.0",
+		"nx-cloud": "latest",
+		"prettier": "^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.5.4"
+	},
+	"name": "frontend",
+	"packageManager": "yarn@3.5.1",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
+}

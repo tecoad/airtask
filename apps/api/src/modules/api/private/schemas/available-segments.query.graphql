@@ -1,0 +1,9 @@
+type Segment {
+  id: ID!
+  title: String!
+  translations: [Translation!]!
+}
+
+extend type Query {
+  availableSegments: [Segment!]!
+}

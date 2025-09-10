@@ -1,0 +1,14 @@
+input UpdateUserInput {
+  first_name: String
+  last_name: String
+  email: String
+  language: LanguageCode
+
+  "Required for password change"
+  old_password: String
+  password: String
+}
+
+extend type Mutation {
+  updateUser(input: UpdateUserInput!): UserAuthResult!
+}

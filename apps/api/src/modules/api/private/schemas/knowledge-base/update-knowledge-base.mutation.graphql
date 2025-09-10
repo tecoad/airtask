@@ -1,0 +1,9 @@
+input UpdateKnowledgeBaseInput {
+	id: ID!
+	title: String
+	type: KnowledgeBaseType
+}
+
+extend type Mutation {
+	updateKnowledge(input: UpdateKnowledgeBaseInput!): KnowledgeBase!
+}

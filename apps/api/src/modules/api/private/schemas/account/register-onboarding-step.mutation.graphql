@@ -1,0 +1,19 @@
+enum OnBoardingStepName {
+  # Update account settings for the first time
+  finish_setup_account
+  # Create the first quotation
+  create_first_quotation
+  # For the first time, copy a quotation link
+  first_quotation_copy_link
+  # For the first time, receive a quotation request
+  receive_first_quotation_request
+  # For the first time, configured widget settings
+  setup_widget_settings
+}
+
+extend type Mutation {
+  registerOnboardingStepForAccount(
+    accountId: ID!
+    step: OnBoardingStepName!
+  ): OnBoardingStep
+}

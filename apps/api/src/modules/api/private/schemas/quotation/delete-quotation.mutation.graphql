@@ -1,0 +1,4 @@
+extend type Mutation {
+  deleteQuotation(id: ID!): Boolean!
+  deleteQuotationQuestion(id: ID!): Boolean!
+}

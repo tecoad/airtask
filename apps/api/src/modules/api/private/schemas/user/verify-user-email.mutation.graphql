@@ -1,0 +1,16 @@
+enum VerifyUserEmailErrorCode {
+  INVALID_TOKEN
+  EXPIRED_TOKEN
+}
+
+type VerifyUserEmailError {
+  message: String!
+  errorCode: VerifyUserEmailErrorCode
+}
+
+union VerifyUserEmailResult = VerifyUserEmailError | ActiveUser
+
+extend type Mutation {
+  requestUserEmailVerification(id: String!): Boolean!
+  verifyUserEmail(id: String!, token: String!): VerifyUserEmailResult!
+}

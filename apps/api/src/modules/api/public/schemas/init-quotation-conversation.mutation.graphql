@@ -1,0 +1,13 @@
+union InitQuotationConversationResult =
+    # Return when the quotation is found, before the message starts to be written
+  QuotationConversation # Return when the quotation has some error
+  | QuotationAvailabilityError # Return when the first message of conversation is successfully written
+  | QuotationConversationMessage # Return when the first message of conversation is been written
+  | QuotationConversationMessageToken
+
+extend type Subscription {
+  initQuotationConversation(
+    hash: String!
+    recipient: QuotationConversationRecipientInput
+  ): InitQuotationConversationResult
+}

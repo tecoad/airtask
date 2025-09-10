@@ -1,0 +1,5 @@
+.env.example
+.env
+/uploads
+/node_modules
+/snapshots

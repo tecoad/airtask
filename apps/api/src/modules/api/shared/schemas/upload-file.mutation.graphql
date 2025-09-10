@@ -1,0 +1,14 @@
+type Asset {
+	id: ID!
+	title: String!
+	url: String!
+	width: Int
+	height: Int
+	type: String!
+	filesize: String!
+	duration: Int
+}
+
+type Mutation {
+	uploadFile(file: Upload!): [Asset!]!
+}

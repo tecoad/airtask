@@ -1,0 +1,11 @@
+type SubscriptionPortalResult {
+  url: String!
+}
+
+input SubscriptionPortalInput {
+  accountId: ID!
+}
+
+extend type Query {
+  subscriptionPortal(input: SubscriptionPortalInput!): SubscriptionPortalResult!
+}

@@ -1,0 +1,39 @@
+type User {
+  id: ID!
+  email: String!
+  first_name: String!
+  last_name: String!
+  last_login: DateTime
+  anonymous_id: String
+  date_created: DateTime!
+  date_updated: DateTime
+}
+
+input UsersListSort {
+  date_created: SortOrder
+  date_updated: SortOrder
+}
+
+input UsersListFilter {
+  operator: FilterOperator!
+  "Filter by first_name, last_name, email, or anonymous_id"
+  mainQuery: String
+}
+
+input PaginatedUsersListOptions {
+  take: Int
+  skip: Int
+  sort: UsersListSort
+}
+
+type PaginatedUsersList {
+  items: [User!]!
+  totalItems: Int!
+}
+
+type Query {
+  users(
+    pagination: PaginatedUsersListOptions
+    filter: UsersListFilter
+  ): PaginatedUsersList!
+}

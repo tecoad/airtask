@@ -1,0 +1,57 @@
+{
+  "quotationNotification": {
+    "subject": "Nova solicitação de {{name}}.",
+    "hello": "Olá <0>{{ name }}</0>,",
+    "heading": "Você recebeu uma nova solicitação de <0>{{name}}</0>",
+    "requestData": {
+      "name": "Nome: <0>{{name}}</0>",
+      "email": "Email: <0>{{email}}</0>",
+      "phone": "Telefone: <0>{{phone}}</0>",
+      "title": "Dados da Solicitação"
+    },
+    "instructions": "Agora você pode entrar em contato com ele, clicando nos contatos deste email ou respondendo a este email."
+  },
+  "footer": {
+    "reason": "Você está recebendo esta mensagem porque seu email foi usado em nosso site."
+  },
+  "resetPassword": {
+    "subject": "Redefinição de Senha",
+    "title": "Redefina sua senha",
+    "accessLink": "Acesse este link para redefinir sua senha: <0>{{- link}}</0>",
+    "noticeAlert": "<0>Importante:</0> não compartilhe este link com mais ninguém, pois isso pode levar ao acesso não autorizado à sua conta.",
+    "resetPassword": "Redefinir senha"
+  },
+  "translation": {},
+  "subscriptionPaymentFailed": {
+    "title": "{{name}}, temos um problema.",
+    "subject": "Não conseguimos cobrar seu plano.",
+    "notAbleToCharge": "{{name}}, não podemos cobrar sua assinatura.",
+    "reviewInfo": "Você poderá revisar as informações na sua conta. <0/>\n\n<1>Tentaremos uma nova cobrança em alguns dias.</1>",
+    "reviewAccount": "Revisar dados de pagamento",
+    "warning": "<0>Importante:</0> realizaremos no máximo, 3 tentativas de cobrança. <1/>\nApós a 3ª tentativa sem sucesso, seu plano será cancelado."
+  },
+  "usageLimitCloseToExceed": {
+    "title": "{{name}}, você está proximo do limite de uso do módulo {{module}}.",
+    "subject": "{{module}}: Você está perto do limite de uso.",
+    "subtitle": "Você está recebendo essa notificação pois possui apenas 30% dos créditos do seu plano restantes.",
+    "noticeAlert": "Em breve, seus widgets poderão ser inativados. <0/>\nOu você poderá migrar o plano ou adquirir créditos extras agora.",
+    "buyCredits": "Comprar Créditos"
+  },
+  "usageLimitExceeded": {
+    "title": "{{ name }}, seu serviço {{module}} está inativo.",
+    "subject": "Limite de uso: {{module}} inativo.",
+    "subtitle": "Você atingiu o limite de uso para o módulo {{module}}.",
+    "instructions": "Para reativa-lo, você poderá migrar o plano ou adquirir créditos extras. ",
+    "managePlan": "Gerenciar plano"
+  },
+  "verifyEmail": {
+    "title": "Verifique agora seu email",
+    "subject": "Por favor, verifique seu email.",
+    "verifyEmailAccess": "Acesse agora o link para verificar seu e-mail: <0>{{-link}}</0>",
+    "noticeAlert": "<0>Importante:</0> Não forneça este link a terceiros.",
+    "accessAccount": "Acessar conta"
+  },
+  "standardContent": {
+    "contactUs": "<0>Dúvidas?</0> Entre em contato conosco pelo e-mail <1>help@airtask.ai</1> ou por um dos métodos disponíveis <2>acessando sua conta</2>."
+  }
+}

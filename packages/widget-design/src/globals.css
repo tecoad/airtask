@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	.atask-wdg {
+		--background: 0 0% 100%;
+		--foreground: 222.2 47.4% 11.2%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 47.4% 11.2%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 47.4% 11.2%;
+
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
+
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 222.2 47.4% 11.2%;
+
+		--radius: 0.5rem;
+	}
+
+	.atask-wdg.wdg-dark {
+		--background: 222.2 47.4% 11.2%;
+		--foreground: 210 40% 98%;
+
+		--card: 222.2 47.4% 11.2%;
+		--card-foreground: 210 40% 98%;
+
+		--popover: 222.2 47.4% 11.2%;
+		--popover-foreground: 210 40% 98%;
+
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 212.7 26.8% 83.9%;
+	}
+
+	.atask-wdg * {
+		@apply wdg-border-border;
+	}
+
+	.atask-wdg {
+		@apply wdg-bg-background wdg-text-foreground;
+		font-feature-settings:
+			'rlig' 1,
+			'calt' 1;
+	}
+}
+
+@layer utilities {
+	.wdg-is-skeleton {
+		animation: pulse 1.5s infinite;
+		user-select: none;
+		border-radius: 0.25rem;
+		background-color: hsl(var(--foreground) / 0.1);
+		color: transparent;
+	}
+
+	.wdg-input {
+		@apply wdg-text-base !wdg-ring-[--chat-color] md:wdg-text-sm;
+	}
+
+	.wdg-custom-scroll {
+		@apply wdg-scrollbar-thumb-main wdg-scrollbar wdg-scrollbar-w-1 wdg-scrollbar-track-foreground/20;
+	}
+
+	.wdg-thinking-bullet {
+		@apply wdg-h-[6px] wdg-w-[6px] wdg-rounded-full wdg-bg-foreground/50 wdg-highlight-black/30;
+
+		animation: bounceFaster 0.6s infinite;
+
+		&:nth-child(2) {
+			animation-delay: 0.1s;
+		}
+
+		&:nth-child(3) {
+			animation-delay: 0.2s;
+		}
+	}
+
+	.wdg-sent-time {
+		@apply wdg-mt-2 wdg-block wdg-text-xs wdg-leading-none wdg-text-foreground/40;
+	}
+
+	.wdg-avatar {
+		@apply wdg-aspect-square wdg-flex wdg-h-9 wdg-items-center wdg-justify-center wdg-rounded-full wdg-bg-gradient-to-br wdg-highlight-white/30 wdg-text-white/90 wdg-overflow-hidden wdg-shrink-0;
+
+		&.wdg-avatar-bot {
+			@apply wdg-from-foreground/70 wdg-to-foreground/40;
+		}
+
+		&.wdg-avatar-user {
+			@apply wdg-from-foreground/40 wdg-to-foreground/10;
+		}
+
+		.wdg-avatar-icon {
+			@apply wdg-h-[22px] wdg-w-[22px];
+		}
+	}
+
+	.wdg-bubble-wrapper {
+		@apply wdg-flex wdg-flex-col wdg-items-start;
+	}
+
+	.wdg-bubble {
+		@apply wdg-rounded-b-lg wdg-rounded-r-lg wdg-px-3 wdg-py-2;
+	}
+
+	.wdg-bubble-text {
+		@apply wdg-whitespace-pre-wrap wdg-text-[length:--chat-fontSize];
+	}
+
+	.wdg-button {
+		@apply wdg-bg-gradient-to-br wdg-from-foreground/50 wdg-to-foreground/20  wdg-flex wdg-items-center wdg-justify-center  wdg-transition-colors wdg-duration-500 wdg-text-white wdg-highlight-white/30 wdg-rounded-full wdg-relative wdg-overflow-hidden wdg-gap-3;
+	}
+
+	.wdg-header-button {
+		@apply wdg-rounded-full wdg-w-8 wdg-h-8 wdg-p-0 wdg-bg-gradient-to-br wdg-from-foreground/30 wdg-to-foreground/5  wdg-flex wdg-items-center wdg-justify-center wdg-transition-colors wdg-duration-500 wdg-text-foreground  wdg-highlight-white/30;
+
+		&:hover {
+			@apply wdg-color-gradient wdg-background-animate2;
+		}
+	}
+
+	.wdg-color-gradient {
+		@apply wdg-bg-[--chat-color] wdg-from-transparent wdg-bg-gradient-to-l wdg-via-[--chat-colorGradientShadow] wdg-to-transparent wdg-text-[--chat-mostContrastBlackOrWhite] wdg-from-[30%] wdg-via-[50%] wdg-to-[70%];
+	}
+
+	.wdg-prompt {
+		@apply wdg-flex wdg-w-full wdg-justify-start wdg-gap-4;
+	}
+
+	.wdg-background-animate:hover {
+		animation-play-state: paused;
+	}
+
+	@keyframes bounceFaster {
+		0%,
+		100% {
+			transform: translateY(-35%);
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 2);
+		}
+		50% {
+			transform: translateY(35%);
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 2);
+		}
+	}
+
+	.wdg-icon-wrapper {
+		@apply wdg-h-full wdg-w-full wdg-absolute  wdg-flex wdg-items-center wdg-justify-center;
+	}
+
+	.wdg-background-animate,
+	.wdg-background-animate2 {
+		background-size: 400%;
+		animation: GradientAnimation 6s ease infinite;
+		animation-play-state: running;
+	}
+
+	@keyframes GradientAnimation {
+		0%,
+		100% {
+			background-position: 0% 0%;
+		}
+		25% {
+			background-position: 100% 100%;
+		}
+		50% {
+			background-position: 0% 100%;
+		}
+		75% {
+			background-position: 100% 0%;
+		}
+	}
+}

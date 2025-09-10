@@ -1,0 +1,14 @@
+input CreateExtraCreditCheckoutInput {
+  accountId: ID!
+  priceExternalId: String!
+}
+
+type CreateExtraCreditCheckoutResult {
+  url: String!
+}
+
+extend type Mutation {
+  createExtraCreditCheckout(
+    input: CreateExtraCreditCheckoutInput!
+  ): CreateExtraCreditCheckoutResult!
+}

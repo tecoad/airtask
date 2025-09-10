@@ -1,0 +1,13 @@
+type FlowContactSegment {
+	id: ID!
+	label: String!
+	flow_instances_count: Int!
+	flow_contacts_count: Int!
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+extend type Query {
+	accountFlowSegment(id: ID!): FlowContactSegment
+	accountFlowSegments(account: ID!): [FlowContactSegment!]!
+}

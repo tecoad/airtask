@@ -1,0 +1,6 @@
+extend type Mutation {
+  updateQuotationConversationRecipient(
+    quotationConversationId: ID!
+    recipient: QuotationConversationRecipientInput
+  ): QuotationConversationRecipient!
+}

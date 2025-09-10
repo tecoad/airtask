@@ -1,0 +1,10 @@
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+union UserAuthResult = ActiveUser | UserAuthError
+
+extend type Mutation {
+  loginUser(input: LoginUserInput!): UserAuthResult!
+}

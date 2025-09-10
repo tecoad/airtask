@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/w/q/:hash",
+      "destination": "/api/widget/quotation/:hash"
+    }
+  ]
+}

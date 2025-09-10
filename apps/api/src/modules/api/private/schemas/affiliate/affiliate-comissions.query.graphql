@@ -1,0 +1,48 @@
+enum AffiliateComissionStatus {
+  pending
+  paid
+}
+
+type AffiliateComission {
+  id: String!
+  status: AffiliateComissionStatus!
+  amount: Float!
+  date_payment: DateTime
+  date_created: DateTime!
+}
+
+input AffiliateComissionsListFilter {
+  operator: FilterOperator!
+  status: AffiliateComissionStatus
+}
+
+input AffiliateComissionListSort {
+  date_created: SortOrder
+  amount: SortOrder
+}
+
+input PaginatedAffiliateComissionListOptions {
+  take: Int
+  skip: Int
+  sort: AffiliateComissionListSort
+}
+
+type PaginatedAffiliateComissionList {
+  items: [AffiliateComission!]!
+  totalItems: Int!
+}
+
+type AffiliateComissionsCalcs {
+  paidAmountByPeriod(to: DateTime, from: DateTime): Float!
+  pendingAmountToReceive: Float!
+  nextPaymentDate: DateTime!
+  amountOfUsersIndicated: Int!
+}
+
+extend type Query {
+  affiliateComissions(
+    pagination: PaginatedAffiliateComissionListOptions
+    filter: AffiliateComissionsListFilter
+  ): PaginatedAffiliateComissionList
+  affiliateComissionsCalcs: AffiliateComissionsCalcs!
+}

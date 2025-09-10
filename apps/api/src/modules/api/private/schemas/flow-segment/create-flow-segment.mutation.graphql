@@ -1,0 +1,8 @@
+input CreateFlowContactSegmentInput {
+	account: ID!
+	label: String!
+}
+
+extend type Mutation {
+	createFlowContactSegment(input: CreateFlowContactSegmentInput!): FlowContactSegment!
+}

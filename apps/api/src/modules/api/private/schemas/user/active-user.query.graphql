@@ -1,0 +1,49 @@
+enum AccountRole {
+  owner
+  user
+}
+
+enum SubscriptionStatus {
+  active
+  trialing
+  pending
+  cancelled
+}
+
+type AccountSubscription {
+  id: ID!
+  status: SubscriptionStatus!
+}
+
+type UserAccount {
+  account: Account!
+  account_id: ID!
+  user_id: ID!
+  user: User!
+  role: AccountRole!
+  allowed_modules: [AccountUsageKind!]!
+}
+
+type User {
+  id: ID!
+  email: String!
+  first_name: String!
+  last_name: String!
+}
+
+type ActiveUser {
+  id: ID!
+  email: String!
+  first_name: String!
+  last_name: String!
+  accounts: [UserAccount!]!
+  last_login: DateTime
+  is_affiliate: Boolean
+  anonymous_id: String
+  permissions: [Permissions!]!
+  language: LanguageCode
+}
+
+type Query {
+  activeUser: ActiveUser
+}

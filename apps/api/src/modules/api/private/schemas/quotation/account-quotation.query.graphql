@@ -1,0 +1,13 @@
+enum SoftDeleteQueryMode {
+  # Will show all. Deleted or not
+  show_all
+  # Will show only the ones that are not with soft delete
+  show_only_not_deleted
+  # Will show only the ones with soft delete
+  show_only_deleted
+}
+
+extend type Query {
+  accountQuotations(account: ID!, mode: SoftDeleteQueryMode!): [Quotation!]!
+  accountQuotation(id: ID!): Quotation
+}

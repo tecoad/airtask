@@ -1,0 +1,26 @@
+enum AffiliateStatus {
+  active
+  inactive
+  waiting_approval
+}
+
+enum AffiliatePayoutMethod {
+  pix
+  paypal
+}
+
+type Affiliate {
+  id: ID!
+  alias: String!
+  status: AffiliateStatus!
+  payout_method: AffiliatePayoutMethod
+  payout_method_key: String
+  comission_duration_months: Int
+  comission_percentage: Int
+  date_created: DateTime!
+  date_updated: DateTime
+}
+
+extend type Query {
+  activeUserAffiliate: Affiliate
+}

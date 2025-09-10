@@ -1,0 +1,4 @@
+type Mutation {
+  startSimulationMode(focusUserId: ID!): User
+  exitSimulationMode: Boolean
+}

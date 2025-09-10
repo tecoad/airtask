@@ -1,0 +1,13 @@
+{
+	"name": "@airtask/shared",
+	"version": "0.0.1",
+	"private": true,
+	"main": "dist/index.js",
+	"types": "index.ts",
+	"scripts": {
+		"build": "tsc"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2"
+	}
+}

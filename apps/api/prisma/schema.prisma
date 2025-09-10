@@ -1,0 +1,1075 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model account {
+  api_key                                                                String?                      @db.Uuid
+  date_created                                                           DateTime?                    @db.Timestamptz(6)
+  date_reset_usage                                                       DateTime?                    @db.Timestamp(6)
+  date_updated                                                           DateTime?                    @db.Timestamptz(6)
+  description                                                            String?
+  id                                                                     Int                          @id @default(autoincrement())
+  name                                                                   String?                      @db.VarChar(255)
+  payment_external_id                                                    String?                      @db.VarChar(255)
+  website                                                                String?                      @db.VarChar(255)
+  widget_config                                                          Int?
+  segment                                                                Int?
+  referrer                                                               Int?
+  currency                                                               String?                      @db.VarChar(255)
+  affiliate                                                              affiliate?                   @relation(fields: [referrer], references: [id], onUpdate: NoAction, map: "account_referrer_foreign")
+  segment_account_segmentTosegment                                       segment?                     @relation("account_segmentTosegment", fields: [segment], references: [id], onUpdate: NoAction, map: "account_segment_foreign")
+  widget_config_account_widget_configTowidget_config                     widget_config?               @relation("account_widget_configTowidget_config", fields: [widget_config], references: [id], onUpdate: NoAction, map: "account_widget_config_foreign")
+  account_api_key_account_api_key_accountToaccount                       account_api_key[]            @relation("account_api_key_accountToaccount")
+  account_credit_account_credit_accountToaccount                         account_credit[]             @relation("account_credit_accountToaccount")
+  account_user                                                           account_user[]
+  affiliate_comission_affiliate_comission_accountToaccount               affiliate_comission[]        @relation("affiliate_comission_accountToaccount")
+  flow_flow_accountToaccount                                             flow[]                       @relation("flow_accountToaccount")
+  flow_action_flow_action_accountToaccount                               flow_action[]                @relation("flow_action_accountToaccount")
+  flow_agent_flow_agent_accountToaccount                                 flow_agent[]                 @relation("flow_agent_accountToaccount")
+  flow_contact_flow_contact_accountToaccount                             flow_contact[]               @relation("flow_contact_accountToaccount")
+  flow_contact_import_flow_contact_import_accountToaccount               flow_contact_import[]        @relation("flow_contact_import_accountToaccount")
+  flow_contact_segment_flow_contact_segment_accountToaccount             flow_contact_segment[]       @relation("flow_contact_segment_accountToaccount")
+  flow_integration_calendar_flow_integration_calendar_accountToaccount   flow_integration_calendar[]  @relation("flow_integration_calendar_accountToaccount")
+  flow_integration_webhook_flow_integration_webhook_accountToaccount     flow_integration_webhook[]   @relation("flow_integration_webhook_accountToaccount")
+  flow_interaction_flow_interaction_accountToaccount                     flow_interaction[]           @relation("flow_interaction_accountToaccount")
+  flow_interaction_recording_flow_interaction_recording_accountToaccount flow_interaction_recording[] @relation("flow_interaction_recording_accountToaccount")
+  knowledge_base_knowledge_base_accountToaccount                         knowledge_base[]             @relation("knowledge_base_accountToaccount")
+  knowledge_base_qa_knowledge_base_qa_accountToaccount                   knowledge_base_qa[]          @relation("knowledge_base_qa_accountToaccount")
+  onboarding_step_account                                                onboarding_step_account[]
+  quotation_quotation_accountToaccount                                   quotation[]                  @relation("quotation_accountToaccount")
+  quotation_request_quotation_request_accountToaccount                   quotation_request[]          @relation("quotation_request_accountToaccount")
+  subscription_subscription_accountToaccount                             subscription[]               @relation("subscription_accountToaccount")
+}
+
+model account_user {
+  account_id Int?
+  id         Int      @id @default(autoincrement())
+  role       String?  @default("user") @db.VarChar(255)
+  user_id    Int?
+  account    account? @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "account_user_account_id_foreign")
+  user       user?    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "account_user_user_id_foreign")
+}
+
+model affiliate {
+  id                                                           Int                   @id @default(autoincrement())
+  status                                                       String?               @db.VarChar(255)
+  date_created                                                 DateTime?             @db.Timestamptz(6)
+  date_updated                                                 DateTime?             @db.Timestamptz(6)
+  alias                                                        String                @unique(map: "affiliate_alias_unique") @db.VarChar(255)
+  comission_percentage                                         Int?                  @default(20)
+  comission_duration_months                                    Int?                  @default(12)
+  payout_method                                                String?               @db.VarChar(255)
+  payout_method_key                                            String?               @db.VarChar(255)
+  user                                                         Int?                  @unique(map: "affiliate_user_unique")
+  account                                                      account[]
+  user_affiliate_userTouser                                    user?                 @relation("affiliate_userTouser", fields: [user], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "affiliate_user_foreign")
+  affiliate_comission_affiliate_comission_affiliateToaffiliate affiliate_comission[] @relation("affiliate_comission_affiliateToaffiliate")
+}
+
+model affiliate_comission {
+  id                                                 Int       @id @default(autoincrement())
+  status                                             String    @default("draft") @db.VarChar(255)
+  date_created                                       DateTime? @db.Timestamptz(6)
+  date_updated                                       DateTime? @db.Timestamptz(6)
+  amount                                             Decimal   @db.Decimal(5, 2)
+  date_payment                                       DateTime? @db.Date
+  affiliate                                          Int
+  account                                            Int?
+  currency                                           String?   @db.VarChar(255)
+  account_affiliate_comission_accountToaccount       account?  @relation("affiliate_comission_accountToaccount", fields: [account], references: [id], onUpdate: NoAction, map: "affiliate_comission_account_foreign")
+  affiliate_affiliate_comission_affiliateToaffiliate affiliate @relation("affiliate_comission_affiliateToaffiliate", fields: [affiliate], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "affiliate_comission_affiliate_foreign")
+}
+
+model directus_activity {
+  id                 Int                  @id @default(autoincrement())
+  action             String               @db.VarChar(45)
+  user               String?              @db.Uuid
+  timestamp          DateTime             @default(now()) @db.Timestamptz(6)
+  ip                 String?              @db.VarChar(50)
+  user_agent         String?              @db.VarChar(255)
+  collection         String               @db.VarChar(64)
+  item               String               @db.VarChar(255)
+  comment            String?
+  origin             String?              @db.VarChar(255)
+  directus_revisions directus_revisions[]
+}
+
+model directus_collections {
+  collection                 String                 @id @db.VarChar(64)
+  icon                       String?                @db.VarChar(30)
+  note                       String?
+  display_template           String?                @db.VarChar(255)
+  hidden                     Boolean                @default(false)
+  singleton                  Boolean                @default(false)
+  translations               Json?                  @db.Json
+  archive_field              String?                @db.VarChar(64)
+  archive_app_filter         Boolean                @default(true)
+  archive_value              String?                @db.VarChar(255)
+  unarchive_value            String?                @db.VarChar(255)
+  sort_field                 String?                @db.VarChar(64)
+  accountability             String?                @default("all") @db.VarChar(255)
+  color                      String?                @db.VarChar(255)
+  item_duplication_fields    Json?                  @db.Json
+  sort                       Int?
+  group                      String?                @db.VarChar(64)
+  collapse                   String                 @default("open") @db.VarChar(255)
+  preview_url                String?                @db.VarChar(255)
+  versioning                 Boolean                @default(false)
+  directus_collections       directus_collections?  @relation("directus_collectionsTodirectus_collections", fields: [group], references: [collection], onDelete: NoAction, onUpdate: NoAction, map: "directus_collections_group_foreign")
+  other_directus_collections directus_collections[] @relation("directus_collectionsTodirectus_collections")
+  directus_shares            directus_shares[]
+  directus_versions          directus_versions[]
+}
+
+model directus_dashboards {
+  id              String            @id @db.Uuid
+  name            String            @db.VarChar(255)
+  icon            String            @default("dashboard") @db.VarChar(30)
+  note            String?
+  date_created    DateTime?         @default(now()) @db.Timestamptz(6)
+  user_created    String?           @db.Uuid
+  color           String?           @db.VarChar(255)
+  directus_users  directus_users?   @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_dashboards_user_created_foreign")
+  directus_panels directus_panels[]
+}
+
+model directus_fields {
+  id                 Int      @id @default(autoincrement())
+  collection         String   @db.VarChar(64)
+  field              String   @db.VarChar(64)
+  special            String?  @db.VarChar(64)
+  interface          String?  @db.VarChar(64)
+  options            Json?    @db.Json
+  display            String?  @db.VarChar(64)
+  display_options    Json?    @db.Json
+  readonly           Boolean  @default(false)
+  hidden             Boolean  @default(false)
+  sort               Int?
+  width              String?  @default("full") @db.VarChar(30)
+  translations       Json?    @db.Json
+  note               String?
+  conditions         Json?    @db.Json
+  required           Boolean? @default(false)
+  group              String?  @db.VarChar(64)
+  validation         Json?    @db.Json
+  validation_message String?
+}
+
+model directus_files {
+  id                                                                    String                       @id @db.Uuid
+  storage                                                               String                       @db.VarChar(255)
+  filename_disk                                                         String?                      @db.VarChar(255)
+  filename_download                                                     String                       @db.VarChar(255)
+  title                                                                 String?                      @db.VarChar(255)
+  type                                                                  String?                      @db.VarChar(255)
+  folder                                                                String?                      @db.Uuid
+  uploaded_by                                                           String?                      @db.Uuid
+  uploaded_on                                                           DateTime                     @default(now()) @db.Timestamptz(6)
+  modified_by                                                           String?                      @db.Uuid
+  modified_on                                                           DateTime                     @default(now()) @db.Timestamptz(6)
+  charset                                                               String?                      @db.VarChar(50)
+  filesize                                                              BigInt?
+  width                                                                 Int?
+  height                                                                Int?
+  duration                                                              Int?
+  embed                                                                 String?                      @db.VarChar(200)
+  description                                                           String?
+  location                                                              String?
+  tags                                                                  String?
+  metadata                                                              Json?                        @db.Json
+  directus_folders                                                      directus_folders?            @relation(fields: [folder], references: [id], onUpdate: NoAction, map: "directus_files_folder_foreign")
+  directus_users_directus_files_modified_byTodirectus_users             directus_users?              @relation("directus_files_modified_byTodirectus_users", fields: [modified_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_modified_by_foreign")
+  directus_users_directus_files_uploaded_byTodirectus_users             directus_users?              @relation("directus_files_uploaded_byTodirectus_users", fields: [uploaded_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_files_uploaded_by_foreign")
+  directus_settings_directus_settings_project_logoTodirectus_files      directus_settings[]          @relation("directus_settings_project_logoTodirectus_files")
+  directus_settings_directus_settings_public_backgroundTodirectus_files directus_settings[]          @relation("directus_settings_public_backgroundTodirectus_files")
+  directus_settings_directus_settings_public_faviconTodirectus_files    directus_settings[]          @relation("directus_settings_public_faviconTodirectus_files")
+  directus_settings_directus_settings_public_foregroundTodirectus_files directus_settings[]          @relation("directus_settings_public_foregroundTodirectus_files")
+  discord_config                                                        discord_config[]
+  flow_interaction_recording                                            flow_interaction_recording[]
+  quotation_config_quotation_config_avatarTodirectus_files              quotation_config[]           @relation("quotation_config_avatarTodirectus_files")
+  quotation_config_quotation_config_iconTodirectus_files                quotation_config[]           @relation("quotation_config_iconTodirectus_files")
+  widget_config_widget_config_avatarTodirectus_files                    widget_config[]              @relation("widget_config_avatarTodirectus_files")
+  widget_config_widget_config_iconTodirectus_files                      widget_config[]              @relation("widget_config_iconTodirectus_files")
+}
+
+model directus_flows {
+  id                  String                @id @db.Uuid
+  name                String                @db.VarChar(255)
+  icon                String?               @db.VarChar(30)
+  color               String?               @db.VarChar(255)
+  description         String?
+  status              String                @default("active") @db.VarChar(255)
+  trigger             String?               @db.VarChar(255)
+  accountability      String?               @default("all") @db.VarChar(255)
+  options             Json?                 @db.Json
+  operation           String?               @unique(map: "directus_flows_operation_unique") @db.Uuid
+  date_created        DateTime?             @default(now()) @db.Timestamptz(6)
+  user_created        String?               @db.Uuid
+  directus_users      directus_users?       @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_flows_user_created_foreign")
+  directus_operations directus_operations[]
+}
+
+model directus_folders {
+  id                     String              @id @db.Uuid
+  name                   String              @db.VarChar(255)
+  parent                 String?             @db.Uuid
+  directus_files         directus_files[]
+  directus_folders       directus_folders?   @relation("directus_foldersTodirectus_folders", fields: [parent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_folders_parent_foreign")
+  other_directus_folders directus_folders[]  @relation("directus_foldersTodirectus_folders")
+  directus_settings      directus_settings[]
+}
+
+model directus_migrations {
+  version   String    @id @db.VarChar(255)
+  name      String    @db.VarChar(255)
+  timestamp DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model directus_notifications {
+  id                                                              Int             @id @default(autoincrement())
+  timestamp                                                       DateTime?       @default(now()) @db.Timestamptz(6)
+  status                                                          String?         @default("inbox") @db.VarChar(255)
+  recipient                                                       String          @db.Uuid
+  sender                                                          String?         @db.Uuid
+  subject                                                         String          @db.VarChar(255)
+  message                                                         String?
+  collection                                                      String?         @db.VarChar(64)
+  item                                                            String?         @db.VarChar(255)
+  directus_users_directus_notifications_recipientTodirectus_users directus_users  @relation("directus_notifications_recipientTodirectus_users", fields: [recipient], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_notifications_recipient_foreign")
+  directus_users_directus_notifications_senderTodirectus_users    directus_users? @relation("directus_notifications_senderTodirectus_users", fields: [sender], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_notifications_sender_foreign")
+}
+
+model directus_operations {
+  id                                                                         String               @id @db.Uuid
+  name                                                                       String?              @db.VarChar(255)
+  key                                                                        String               @db.VarChar(255)
+  type                                                                       String               @db.VarChar(255)
+  position_x                                                                 Int
+  position_y                                                                 Int
+  options                                                                    Json?                @db.Json
+  resolve                                                                    String?              @unique(map: "directus_operations_resolve_unique") @db.Uuid
+  reject                                                                     String?              @unique(map: "directus_operations_reject_unique") @db.Uuid
+  flow                                                                       String               @db.Uuid
+  date_created                                                               DateTime?            @default(now()) @db.Timestamptz(6)
+  user_created                                                               String?              @db.Uuid
+  directus_flows                                                             directus_flows       @relation(fields: [flow], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_operations_flow_foreign")
+  directus_operations_directus_operations_rejectTodirectus_operations        directus_operations? @relation("directus_operations_rejectTodirectus_operations", fields: [reject], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_reject_foreign")
+  other_directus_operations_directus_operations_rejectTodirectus_operations  directus_operations? @relation("directus_operations_rejectTodirectus_operations")
+  directus_operations_directus_operations_resolveTodirectus_operations       directus_operations? @relation("directus_operations_resolveTodirectus_operations", fields: [resolve], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_operations_resolve_foreign")
+  other_directus_operations_directus_operations_resolveTodirectus_operations directus_operations? @relation("directus_operations_resolveTodirectus_operations")
+  directus_users                                                             directus_users?      @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_operations_user_created_foreign")
+}
+
+model directus_panels {
+  id                  String              @id @db.Uuid
+  dashboard           String              @db.Uuid
+  name                String?             @db.VarChar(255)
+  icon                String?             @db.VarChar(30)
+  color               String?             @db.VarChar(10)
+  show_header         Boolean             @default(false)
+  note                String?
+  type                String              @db.VarChar(255)
+  position_x          Int
+  position_y          Int
+  width               Int
+  height              Int
+  options             Json?               @db.Json
+  date_created        DateTime?           @default(now()) @db.Timestamptz(6)
+  user_created        String?             @db.Uuid
+  directus_dashboards directus_dashboards @relation(fields: [dashboard], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_panels_dashboard_foreign")
+  directus_users      directus_users?     @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_panels_user_created_foreign")
+}
+
+model directus_permissions {
+  id             Int             @id @default(autoincrement())
+  role           String?         @db.Uuid
+  collection     String          @db.VarChar(64)
+  action         String          @db.VarChar(10)
+  permissions    Json?           @db.Json
+  validation     Json?           @db.Json
+  presets        Json?           @db.Json
+  fields         String?
+  directus_roles directus_roles? @relation(fields: [role], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_permissions_role_foreign")
+}
+
+model directus_presets {
+  id               Int             @id @default(autoincrement())
+  bookmark         String?         @db.VarChar(255)
+  user             String?         @db.Uuid
+  role             String?         @db.Uuid
+  collection       String?         @db.VarChar(64)
+  search           String?         @db.VarChar(100)
+  layout           String?         @default("tabular") @db.VarChar(100)
+  layout_query     Json?           @db.Json
+  layout_options   Json?           @db.Json
+  refresh_interval Int?
+  filter           Json?           @db.Json
+  icon             String?         @default("bookmark") @db.VarChar(30)
+  color            String?         @db.VarChar(255)
+  directus_roles   directus_roles? @relation(fields: [role], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_presets_role_foreign")
+  directus_users   directus_users? @relation(fields: [user], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_presets_user_foreign")
+}
+
+model directus_relations {
+  id                      Int     @id @default(autoincrement())
+  many_collection         String  @db.VarChar(64)
+  many_field              String  @db.VarChar(64)
+  one_collection          String? @db.VarChar(64)
+  one_field               String? @db.VarChar(64)
+  one_collection_field    String? @db.VarChar(64)
+  one_allowed_collections String?
+  junction_field          String? @db.VarChar(64)
+  sort_field              String? @db.VarChar(64)
+  one_deselect_action     String  @default("nullify") @db.VarChar(255)
+}
+
+model directus_revisions {
+  id                       Int                  @id @default(autoincrement())
+  activity                 Int
+  collection               String               @db.VarChar(64)
+  item                     String               @db.VarChar(255)
+  data                     Json?                @db.Json
+  delta                    Json?                @db.Json
+  parent                   Int?
+  version                  String?              @db.Uuid
+  directus_activity        directus_activity    @relation(fields: [activity], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_revisions_activity_foreign")
+  directus_revisions       directus_revisions?  @relation("directus_revisionsTodirectus_revisions", fields: [parent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_revisions_parent_foreign")
+  other_directus_revisions directus_revisions[] @relation("directus_revisionsTodirectus_revisions")
+  directus_versions        directus_versions?   @relation(fields: [version], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_revisions_version_foreign")
+}
+
+model directus_roles {
+  id                   String                 @id @db.Uuid
+  name                 String                 @db.VarChar(100)
+  icon                 String                 @default("supervised_user_circle") @db.VarChar(30)
+  description          String?
+  ip_access            String?
+  enforce_tfa          Boolean                @default(false)
+  admin_access         Boolean                @default(false)
+  app_access           Boolean                @default(true)
+  directus_permissions directus_permissions[]
+  directus_presets     directus_presets[]
+  directus_shares      directus_shares[]
+  directus_users       directus_users[]
+}
+
+model directus_sessions {
+  token           String           @id @db.VarChar(64)
+  user            String?          @db.Uuid
+  expires         DateTime         @db.Timestamptz(6)
+  ip              String?          @db.VarChar(255)
+  user_agent      String?          @db.VarChar(255)
+  share           String?          @db.Uuid
+  origin          String?          @db.VarChar(255)
+  directus_shares directus_shares? @relation(fields: [share], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_sessions_share_foreign")
+  directus_users  directus_users?  @relation(fields: [user], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_sessions_user_foreign")
+}
+
+model directus_settings {
+  id                                                                 Int               @id @default(autoincrement())
+  project_name                                                       String            @default("Directus") @db.VarChar(100)
+  project_url                                                        String?           @db.VarChar(255)
+  project_color                                                      String            @default("#6644FF") @db.VarChar(255)
+  project_logo                                                       String?           @db.Uuid
+  public_foreground                                                  String?           @db.Uuid
+  public_background                                                  String?           @db.Uuid
+  public_note                                                        String?
+  auth_login_attempts                                                Int?              @default(25)
+  auth_password_policy                                               String?           @db.VarChar(100)
+  storage_asset_transform                                            String?           @default("all") @db.VarChar(7)
+  storage_asset_presets                                              Json?             @db.Json
+  custom_css                                                         String?
+  storage_default_folder                                             String?           @db.Uuid
+  basemaps                                                           Json?             @db.Json
+  mapbox_key                                                         String?           @db.VarChar(255)
+  module_bar                                                         Json?             @db.Json
+  project_descriptor                                                 String?           @db.VarChar(100)
+  default_language                                                   String            @default("en-US") @db.VarChar(255)
+  custom_aspect_ratios                                               Json?             @db.Json
+  public_favicon                                                     String?           @db.Uuid
+  default_appearance                                                 String            @default("auto") @db.VarChar(255)
+  default_theme_light                                                String?           @db.VarChar(255)
+  theme_light_overrides                                              Json?             @db.Json
+  default_theme_dark                                                 String?           @db.VarChar(255)
+  theme_dark_overrides                                               Json?             @db.Json
+  directus_files_directus_settings_project_logoTodirectus_files      directus_files?   @relation("directus_settings_project_logoTodirectus_files", fields: [project_logo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_project_logo_foreign")
+  directus_files_directus_settings_public_backgroundTodirectus_files directus_files?   @relation("directus_settings_public_backgroundTodirectus_files", fields: [public_background], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_public_background_foreign")
+  directus_files_directus_settings_public_faviconTodirectus_files    directus_files?   @relation("directus_settings_public_faviconTodirectus_files", fields: [public_favicon], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_public_favicon_foreign")
+  directus_files_directus_settings_public_foregroundTodirectus_files directus_files?   @relation("directus_settings_public_foregroundTodirectus_files", fields: [public_foreground], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_settings_public_foreground_foreign")
+  directus_folders                                                   directus_folders? @relation(fields: [storage_default_folder], references: [id], onUpdate: NoAction, map: "directus_settings_storage_default_folder_foreign")
+}
+
+model directus_shares {
+  id                   String               @id @db.Uuid
+  name                 String?              @db.VarChar(255)
+  collection           String               @db.VarChar(64)
+  item                 String               @db.VarChar(255)
+  role                 String?              @db.Uuid
+  password             String?              @db.VarChar(255)
+  user_created         String?              @db.Uuid
+  date_created         DateTime?            @default(now()) @db.Timestamptz(6)
+  date_start           DateTime?            @db.Timestamptz(6)
+  date_end             DateTime?            @db.Timestamptz(6)
+  times_used           Int?                 @default(0)
+  max_uses             Int?
+  directus_sessions    directus_sessions[]
+  directus_collections directus_collections @relation(fields: [collection], references: [collection], onDelete: Cascade, onUpdate: NoAction, map: "directus_shares_collection_foreign")
+  directus_roles       directus_roles?      @relation(fields: [role], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "directus_shares_role_foreign")
+  directus_users       directus_users?      @relation(fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_shares_user_created_foreign")
+}
+
+model directus_users {
+  id                                                                      String                   @id @db.Uuid
+  first_name                                                              String?                  @db.VarChar(50)
+  last_name                                                               String?                  @db.VarChar(50)
+  email                                                                   String?                  @unique(map: "directus_users_email_unique") @db.VarChar(128)
+  password                                                                String?                  @db.VarChar(255)
+  location                                                                String?                  @db.VarChar(255)
+  title                                                                   String?                  @db.VarChar(50)
+  description                                                             String?
+  tags                                                                    Json?                    @db.Json
+  avatar                                                                  String?                  @db.Uuid
+  language                                                                String?                  @db.VarChar(255)
+  tfa_secret                                                              String?                  @db.VarChar(255)
+  status                                                                  String                   @default("active") @db.VarChar(16)
+  role                                                                    String?                  @db.Uuid
+  token                                                                   String?                  @unique(map: "directus_users_token_unique") @db.VarChar(255)
+  last_access                                                             DateTime?                @db.Timestamptz(6)
+  last_page                                                               String?                  @db.VarChar(255)
+  provider                                                                String                   @default("default") @db.VarChar(128)
+  external_identifier                                                     String?                  @unique(map: "directus_users_external_identifier_unique") @db.VarChar(255)
+  auth_data                                                               Json?                    @db.Json
+  email_notifications                                                     Boolean?                 @default(true)
+  appearance                                                              String?                  @db.VarChar(255)
+  theme_dark                                                              String?                  @db.VarChar(255)
+  theme_light                                                             String?                  @db.VarChar(255)
+  theme_light_overrides                                                   Json?                    @db.Json
+  theme_dark_overrides                                                    Json?                    @db.Json
+  directus_dashboards                                                     directus_dashboards[]
+  directus_files_directus_files_modified_byTodirectus_users               directus_files[]         @relation("directus_files_modified_byTodirectus_users")
+  directus_files_directus_files_uploaded_byTodirectus_users               directus_files[]         @relation("directus_files_uploaded_byTodirectus_users")
+  directus_flows                                                          directus_flows[]
+  directus_notifications_directus_notifications_recipientTodirectus_users directus_notifications[] @relation("directus_notifications_recipientTodirectus_users")
+  directus_notifications_directus_notifications_senderTodirectus_users    directus_notifications[] @relation("directus_notifications_senderTodirectus_users")
+  directus_operations                                                     directus_operations[]
+  directus_panels                                                         directus_panels[]
+  directus_presets                                                        directus_presets[]
+  directus_sessions                                                       directus_sessions[]
+  directus_shares                                                         directus_shares[]
+  directus_roles                                                          directus_roles?          @relation(fields: [role], references: [id], onUpdate: NoAction, map: "directus_users_role_foreign")
+  directus_versions_directus_versions_user_createdTodirectus_users        directus_versions[]      @relation("directus_versions_user_createdTodirectus_users")
+  directus_versions_directus_versions_user_updatedTodirectus_users        directus_versions[]      @relation("directus_versions_user_updatedTodirectus_users")
+  flow_flow_user_createdTodirectus_users                                  flow[]                   @relation("flow_user_createdTodirectus_users")
+  flow_flow_user_updatedTodirectus_users                                  flow[]                   @relation("flow_user_updatedTodirectus_users")
+  flow_agent_flow_agent_user_createdTodirectus_users                      flow_agent[]             @relation("flow_agent_user_createdTodirectus_users")
+  flow_agent_flow_agent_user_updatedTodirectus_users                      flow_agent[]             @relation("flow_agent_user_updatedTodirectus_users")
+  flow_contact_flow_contact_user_createdTodirectus_users                  flow_contact[]           @relation("flow_contact_user_createdTodirectus_users")
+  flow_contact_flow_contact_user_updatedTodirectus_users                  flow_contact[]           @relation("flow_contact_user_updatedTodirectus_users")
+  subscription_subscription_user_createdTodirectus_users                  subscription[]           @relation("subscription_user_createdTodirectus_users")
+  subscription_subscription_user_updatedTodirectus_users                  subscription[]           @relation("subscription_user_updatedTodirectus_users")
+  subscription_plan_subscription_plan_user_createdTodirectus_users        subscription_plan[]      @relation("subscription_plan_user_createdTodirectus_users")
+  subscription_plan_subscription_plan_user_updatedTodirectus_users        subscription_plan[]      @relation("subscription_plan_user_updatedTodirectus_users")
+  user_user_user_createdTodirectus_users                                  user[]                   @relation("user_user_createdTodirectus_users")
+  user_user_user_updatedTodirectus_users                                  user[]                   @relation("user_user_updatedTodirectus_users")
+}
+
+model directus_webhooks {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  method      String  @default("POST") @db.VarChar(10)
+  url         String  @db.VarChar(255)
+  status      String  @default("active") @db.VarChar(10)
+  data        Boolean @default(true)
+  actions     String  @db.VarChar(100)
+  collections String  @db.VarChar(255)
+  headers     Json?   @db.Json
+}
+
+model discord_config {
+  id                                         Int             @id @default(autoincrement())
+  date_created                               DateTime?       @db.Timestamptz(6)
+  date_updated                               DateTime?       @db.Timestamptz(6)
+  messages_color                             String?         @db.VarChar(255)
+  messages_avatar                            String?         @db.Uuid
+  author_name                                String?         @db.VarChar(255)
+  author_url                                 String?         @db.VarChar(255)
+  guild_id                                   String?         @db.VarChar(255)
+  new_subscription_channel_id                String?         @db.VarChar(255)
+  subscription_trial_end_renew_channel_id    String?         @db.VarChar(255)
+  daily_quotation_requests_metric            String?         @db.VarChar(255)
+  finish_stripe_setup_of_extra_credits_alert String?         @db.VarChar(255)
+  head_role                                  String?         @db.VarChar(255)
+  extra_credit_purchase_channel              String?         @db.VarChar(255)
+  directus_files                             directus_files? @relation(fields: [messages_avatar], references: [id], onUpdate: NoAction, map: "discord_config_messages_avatar_foreign")
+}
+
+model global_settings {
+  id           Int       @id @default(autoincrement())
+  date_created DateTime? @db.Timestamptz(6)
+  date_updated DateTime? @db.Timestamptz(6)
+  segments     Json?     @db.Json
+}
+
+model leads {
+  id           Int       @id @default(autoincrement())
+  status       String    @default("draft") @db.VarChar(255)
+  date_created DateTime? @db.Timestamptz(6)
+  date_updated DateTime? @db.Timestamptz(6)
+  email        String?   @unique(map: "leads_email_unique") @db.VarChar(255)
+  phone        String?   @db.VarChar(255)
+  first_name   String?   @db.VarChar(255)
+  last_name    String?   @db.VarChar(255)
+  anonymous_id String?   @db.VarChar(255)
+  language     String?   @db.VarChar(255)
+  origin       String    @db.VarChar(255)
+}
+
+model onboarding_step {
+  id                      Int                       @id @default(autoincrement())
+  date_created            DateTime?                 @db.Timestamptz(6)
+  date_updated            DateTime?                 @db.Timestamptz(6)
+  name                    String                    @unique(map: "onboarding_step_name_unique") @db.VarChar(255)
+  module                  String                    @db.VarChar(255)
+  onboarding_step_account onboarding_step_account[]
+}
+
+model onboarding_step_account {
+  id                 Int              @id @default(autoincrement())
+  onboarding_step_id Int?
+  account_id         Int?
+  date_created       DateTime         @db.Timestamp(6)
+  date_updated       DateTime?        @db.Timestamp(6)
+  account            account?         @relation(fields: [account_id], references: [id], onUpdate: NoAction, map: "onboarding_step_account_account_id_foreign")
+  onboarding_step    onboarding_step? @relation(fields: [onboarding_step_id], references: [id], onUpdate: NoAction, map: "onboarding_step_account_onboarding_step_id_foreign")
+}
+
+model quotation {
+  id                                                                 String                   @id @db.Uuid
+  date_created                                                       DateTime?                @db.Timestamptz(6)
+  date_updated                                                       DateTime?                @db.Timestamptz(6)
+  title                                                              String                   @db.VarChar(255)
+  hash                                                               String                   @unique(map: "quotation_hash_unique") @db.VarChar(255)
+  status                                                             String?                  @default("published") @db.VarChar(255)
+  prompt_instructions                                                String?                  @db.VarChar(255)
+  date_deleted                                                       DateTime?                @db.Timestamp(6)
+  account                                                            Int?
+  widget_config                                                      Int?
+  account_quotation_accountToaccount                                 account?                 @relation("quotation_accountToaccount", fields: [account], references: [id], onUpdate: NoAction, map: "quotation_account_foreign")
+  widget_config_quotation_widget_configTowidget_config               widget_config?           @relation("quotation_widget_configTowidget_config", fields: [widget_config], references: [id], onUpdate: NoAction, map: "quotation_widget_config_foreign")
+  quotation_conversation_quotation_conversation_quotationToquotation quotation_conversation[] @relation("quotation_conversation_quotationToquotation")
+  quotation_models_quotation_models_quotationToquotation             quotation_models[]       @relation("quotation_models_quotationToquotation")
+  quotation_question_quotation_question_quotationToquotation         quotation_question[]     @relation("quotation_question_quotationToquotation")
+  quotation_request_quotation_request_quotationToquotation           quotation_request[]      @relation("quotation_request_quotationToquotation")
+}
+
+model quotation_config {
+  id                                                     Int             @id @default(autoincrement())
+  date_created                                           DateTime?       @db.Timestamptz(6)
+  date_updated                                           DateTime?       @db.Timestamptz(6)
+  primary_color                                          String?         @db.VarChar(255)
+  chat_height                                            Int?
+  call_to_action_text                                    String?         @db.VarChar(255)
+  redirect_url                                           String?         @db.VarChar(255)
+  watermark_text                                         String?         @db.VarChar(255)
+  hide_powered_by                                        Boolean?
+  hide_tooltip                                           Boolean?
+  position                                               String?         @db.VarChar(255)
+  distance_from_bottom                                   String?         @db.VarChar(255)
+  horizontal_distance_from_side                          String?         @db.VarChar(255)
+  chat_icon_size                                         String?         @db.VarChar(255)
+  icon                                                   String?         @db.Uuid
+  avatar                                                 String?         @db.Uuid
+  directus_files_quotation_config_avatarTodirectus_files directus_files? @relation("quotation_config_avatarTodirectus_files", fields: [avatar], references: [id], onUpdate: NoAction, map: "quotation_config_avatar_foreign")
+  directus_files_quotation_config_iconTodirectus_files   directus_files? @relation("quotation_config_iconTodirectus_files", fields: [icon], references: [id], onUpdate: NoAction, map: "quotation_config_icon_foreign")
+}
+
+model quotation_conversation {
+  date_created                                                                       DateTime?           @db.Timestamptz(6)
+  date_updated                                                                       DateTime?           @db.Timestamp(6)
+  id                                                                                 Int                 @id @default(autoincrement())
+  message                                                                            Json?               @db.Json
+  recipient_email                                                                    String?             @db.VarChar(255)
+  recipient_first_name                                                               String?             @db.VarChar(255)
+  recipient_last_name                                                                String?             @db.VarChar(255)
+  recipient_phone                                                                    String?             @db.VarChar(255)
+  status                                                                             String?             @db.VarChar(255)
+  code                                                                               String?             @db.VarChar(255)
+  quotation                                                                          String?             @db.Uuid
+  quotation_quotation_conversation_quotationToquotation                              quotation?          @relation("quotation_conversation_quotationToquotation", fields: [quotation], references: [id], onUpdate: NoAction, map: "quotation_conversation_quotation_foreign")
+  quotation_request_quotation_request_quotation_conversationToquotation_conversation quotation_request[] @relation("quotation_request_quotation_conversationToquotation_conversation")
+}
+
+model quotation_models {
+  id                                              Int        @id @default(autoincrement())
+  date_created                                    DateTime?  @db.Timestamptz(6)
+  date_updated                                    DateTime?  @db.Timestamptz(6)
+  segment                                         Int?
+  quotation                                       String?    @db.Uuid
+  quotation_quotation_models_quotationToquotation quotation? @relation("quotation_models_quotationToquotation", fields: [quotation], references: [id], onUpdate: NoAction, map: "quotation_models_quotation_foreign")
+  segment_quotation_models_segmentTosegment       segment?   @relation("quotation_models_segmentTosegment", fields: [segment], references: [id], onUpdate: NoAction, map: "quotation_models_segment_foreign")
+}
+
+model quotation_question {
+  condition                                         String?              @db.VarChar(255)
+  date_created                                      DateTime?            @db.Timestamptz(6)
+  date_updated                                      DateTime?            @db.Timestamptz(6)
+  id                                                String               @id @db.Uuid
+  label                                             String               @db.VarChar(255)
+  order                                             Int?                 @default(0)
+  parent                                            String?              @db.Uuid
+  active                                            Boolean?             @default(true)
+  quotation                                         String?              @db.Uuid
+  quotation_question                                quotation_question?  @relation("quotation_questionToquotation_question", fields: [parent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quotation_question_parent_foreign")
+  other_quotation_question                          quotation_question[] @relation("quotation_questionToquotation_question")
+  quotation_quotation_question_quotationToquotation quotation?           @relation("quotation_question_quotationToquotation", fields: [quotation], references: [id], onUpdate: NoAction, map: "quotation_question_quotation_foreign")
+}
+
+model quotation_request {
+  id                                                                                           String                        @id @db.Uuid
+  date_created                                                                                 DateTime?                     @db.Timestamptz(6)
+  date_updated                                                                                 DateTime?                     @db.Timestamptz(6)
+  quotation_conversation                                                                       Int?
+  request_data                                                                                 Json?                         @db.Json
+  account                                                                                      Int?
+  checked_by                                                                                   Int?
+  checked_at                                                                                   DateTime?                     @db.Timestamp(6)
+  sequential_id                                                                                Int
+  quotation                                                                                    String?                       @db.Uuid
+  account_quotation_request_accountToaccount                                                   account?                      @relation("quotation_request_accountToaccount", fields: [account], references: [id], onUpdate: NoAction, map: "quotation_request_account_foreign")
+  user                                                                                         user?                         @relation(fields: [checked_by], references: [id], onUpdate: NoAction, map: "quotation_request_checked_by_foreign")
+  quotation_conversation_quotation_request_quotation_conversationToquotation_conversation      quotation_conversation?       @relation("quotation_request_quotation_conversationToquotation_conversation", fields: [quotation_conversation], references: [id], onUpdate: NoAction, map: "quotation_request_quotation_conversation_foreign")
+  quotation_quotation_request_quotationToquotation                                             quotation?                    @relation("quotation_request_quotationToquotation", fields: [quotation], references: [id], onUpdate: NoAction, map: "quotation_request_quotation_foreign")
+  quotation_request_user_view_quotation_request_user_view_quotation_requestToquotation_request quotation_request_user_view[] @relation("quotation_request_user_view_quotation_requestToquotation_request")
+}
+
+model quotation_request_user_view {
+  id                                                                                 Int                @id @default(autoincrement())
+  date_created                                                                       DateTime?          @db.Timestamptz(6)
+  date_updated                                                                       DateTime?          @db.Timestamptz(6)
+  user                                                                               Int?
+  quotation_request                                                                  String?            @db.Uuid
+  quotation_request_quotation_request_user_view_quotation_requestToquotation_request quotation_request? @relation("quotation_request_user_view_quotation_requestToquotation_request", fields: [quotation_request], references: [id], onUpdate: NoAction, map: "quotation_request_user_view_quotation_request_foreign")
+  user_quotation_request_user_view_userTouser                                        user?              @relation("quotation_request_user_view_userTouser", fields: [user], references: [id], onUpdate: NoAction, map: "quotation_request_user_view_user_foreign")
+}
+
+model segment {
+  id                                                 Int                @id @default(autoincrement())
+  date_created                                       DateTime?          @db.Timestamptz(6)
+  title                                              String             @unique(map: "segment_title_unique") @db.VarChar(255)
+  translations                                       Json?              @db.Json
+  date_updated                                       DateTime?          @db.Timestamp(6)
+  account_account_segmentTosegment                   account[]          @relation("account_segmentTosegment")
+  quotation_models_quotation_models_segmentTosegment quotation_models[] @relation("quotation_models_segmentTosegment")
+}
+
+model subscription {
+  account                                                             Int?
+  date_created                                                        DateTime?                @db.Timestamptz(6)
+  date_updated                                                        DateTime?                @db.Timestamptz(6)
+  id                                                                  Int                      @id @default(autoincrement())
+  status                                                              String?                  @default("pending") @db.VarChar(255)
+  subscription_plan                                                   Int?
+  user_created                                                        String?                  @db.Uuid
+  user_updated                                                        String?                  @db.Uuid
+  recurring_interval                                                  String?                  @db.VarChar(255)
+  plan_price                                                          String?                  @db.Uuid
+  account_subscription_accountToaccount                               account?                 @relation("subscription_accountToaccount", fields: [account], references: [id], onUpdate: NoAction, map: "subscription_account_foreign")
+  subscription_plan_price                                             subscription_plan_price? @relation(fields: [plan_price], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "subscription_plan_price_foreign")
+  subscription_plan_subscription_subscription_planTosubscription_plan subscription_plan?       @relation("subscription_subscription_planTosubscription_plan", fields: [subscription_plan], references: [id], onUpdate: NoAction, map: "subscription_subscription_plan_foreign")
+  directus_users_subscription_user_createdTodirectus_users            directus_users?          @relation("subscription_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "subscription_user_created_foreign")
+  directus_users_subscription_user_updatedTodirectus_users            directus_users?          @relation("subscription_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "subscription_user_updated_foreign")
+}
+
+model subscription_plan {
+  allowed_modules                                                Json?                     @db.Json
+  date_created                                                   DateTime?                 @db.Timestamptz(6)
+  date_updated                                                   DateTime?                 @db.Timestamptz(6)
+  external_id                                                    String?                   @db.VarChar(255)
+  id                                                             Int                       @id @default(autoincrement())
+  name                                                           String                    @db.VarChar(255)
+  user_created                                                   String?                   @db.Uuid
+  user_updated                                                   String?                   @db.Uuid
+  is_active                                                      Boolean?
+  benefits                                                       Json?                     @db.Json
+  quotation_model_name                                           String?                   @db.VarChar(255)
+  subscription_subscription_subscription_planTosubscription_plan subscription[]            @relation("subscription_subscription_planTosubscription_plan")
+  directus_users_subscription_plan_user_createdTodirectus_users  directus_users?           @relation("subscription_plan_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "subscription_plan_user_created_foreign")
+  directus_users_subscription_plan_user_updatedTodirectus_users  directus_users?           @relation("subscription_plan_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "subscription_plan_user_updated_foreign")
+  subscription_plan_price                                        subscription_plan_price[]
+}
+
+model user {
+  date_created                                                       DateTime?                     @db.Timestamptz(6)
+  date_updated                                                       DateTime?                     @db.Timestamptz(6)
+  email                                                              String                        @unique(map: "user_email_unique") @db.VarChar(255)
+  email_verification_token                                           String?                       @db.VarChar(255)
+  email_verification_token_expiration                                DateTime?                     @db.Timestamp(6)
+  email_verified_at                                                  DateTime?                     @db.Timestamp(6)
+  first_name                                                         String                        @db.VarChar(255)
+  id                                                                 Int                           @id @default(autoincrement())
+  last_name                                                          String                        @db.VarChar(255)
+  password                                                           String?                       @db.VarChar(255)
+  password_reset_token                                               String?                       @db.VarChar(255)
+  password_reset_token_expiration                                    DateTime?                     @db.Timestamp(6)
+  user_created                                                       String?                       @db.Uuid
+  user_updated                                                       String?                       @db.Uuid
+  last_login                                                         DateTime?                     @db.Timestamp(6)
+  anonymous_id                                                       String?                       @db.VarChar(255)
+  permissions                                                        Json?                         @db.Json
+  language                                                           String?                       @db.VarChar(255)
+  account_api_key                                                    account_api_key[]
+  account_user                                                       account_user[]
+  affiliate_affiliate_userTouser                                     affiliate?                    @relation("affiliate_userTouser")
+  flow_contact_import_flow_contact_import_userTouser                 flow_contact_import[]         @relation("flow_contact_import_userTouser")
+  quotation_request                                                  quotation_request[]
+  quotation_request_user_view_quotation_request_user_view_userTouser quotation_request_user_view[] @relation("quotation_request_user_view_userTouser")
+  session_session_simulated_by_adminTouser                           session[]                     @relation("session_simulated_by_adminTouser")
+  session_session_userTouser                                         session[]                     @relation("session_userTouser")
+  directus_users_user_user_createdTodirectus_users                   directus_users?               @relation("user_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_user_created_foreign")
+  directus_users_user_user_updatedTodirectus_users                   directus_users?               @relation("user_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_user_updated_foreign")
+}
+
+model widget_config {
+  id                                                  Int             @id @default(autoincrement())
+  date_created                                        DateTime?       @db.Timestamptz(6)
+  date_updated                                        DateTime?       @db.Timestamptz(6)
+  main_color                                          String?         @db.VarChar(255)
+  position                                            String?         @db.VarChar(255)
+  google_font                                         String?         @db.VarChar(255)
+  font_size                                           Int?
+  width                                               String?         @db.VarChar(255)
+  height                                              String?         @db.VarChar(255)
+  hide_powered_by                                     Boolean?
+  initially_open                                      Boolean?
+  button_text                                         String?         @db.VarChar(255)
+  button_text_color                                   String?         @db.VarChar(255)
+  distance_from_border                                Int?
+  button_size                                         Int?
+  button_color                                        String?         @db.VarChar(255)
+  button_font_size                                    String?         @db.VarChar(255)
+  button_icon_color                                   String?         @db.VarChar(255)
+  avatar                                              String?         @db.Uuid
+  icon                                                String?         @db.Uuid
+  title                                               String?         @db.VarChar(255)
+  allowed_domains                                     Json?           @db.Json
+  theme                                               String?         @db.VarChar(255)
+  account_account_widget_configTowidget_config        account[]       @relation("account_widget_configTowidget_config")
+  quotation_quotation_widget_configTowidget_config    quotation[]     @relation("quotation_widget_configTowidget_config")
+  directus_files_widget_config_avatarTodirectus_files directus_files? @relation("widget_config_avatarTodirectus_files", fields: [avatar], references: [id], onUpdate: NoAction, map: "widget_config_avatar_foreign")
+  directus_files_widget_config_iconTodirectus_files   directus_files? @relation("widget_config_iconTodirectus_files", fields: [icon], references: [id], onUpdate: NoAction, map: "widget_config_icon_foreign")
+}
+
+model directus_translations {
+  id       String @id @db.Uuid
+  language String @db.VarChar(255)
+  key      String @db.VarChar(255)
+  value    String
+}
+
+model flow {
+  id                                               String                @id @db.Uuid
+  user_created                                     String?               @db.Uuid
+  date_created                                     DateTime?             @db.Timestamptz(6)
+  user_updated                                     String?               @db.Uuid
+  date_updated                                     DateTime?             @db.Timestamptz(6)
+  name                                             String                @db.VarChar(255)
+  type                                             String                @db.VarChar(255)
+  account                                          Int
+  agent                                            String                @db.Uuid
+  segment                                          String?               @db.Uuid
+  status                                           String                @db.VarChar(255)
+  date_deleted                                     DateTime?             @db.Timestamp(6)
+  daily_budget                                     Float                 @db.Real
+  queue_data                                       Json?                 @db.Json
+  concurrency_calls                                Int                   @default(1)
+  account_flow_accountToaccount                    account               @relation("flow_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_account_foreign")
+  flow_agent                                       flow_agent            @relation(fields: [agent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_agent_foreign")
+  flow_contact_segment                             flow_contact_segment? @relation(fields: [segment], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_segment_foreign")
+  directus_users_flow_user_createdTodirectus_users directus_users?       @relation("flow_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_user_created_foreign")
+  directus_users_flow_user_updatedTodirectus_users directus_users?       @relation("flow_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_user_updated_foreign")
+  flow_interaction_flow_interaction_flowToflow     flow_interaction[]    @relation("flow_interaction_flowToflow")
+}
+
+model flow_action {
+  id                                   String                   @id @db.Uuid
+  date_created                         DateTime?                @db.Timestamptz(6)
+  date_updated                         DateTime?                @db.Timestamptz(6)
+  name                                 String?                  @db.VarChar(255)
+  type                                 String?                  @db.VarChar(255)
+  async                                Boolean?                 @default(true)
+  trigger_phrase                       String?                  @db.VarChar(255)
+  account                              Int?
+  account_flow_action_accountToaccount account?                 @relation("flow_action_accountToaccount", fields: [account], references: [id], onUpdate: NoAction, map: "flow_action_account_foreign")
+  flow_agent_flow_action               flow_agent_flow_action[]
+}
+
+model flow_agent {
+  id                                                       String                     @id @db.Uuid
+  user_created                                             String?                    @db.Uuid
+  date_created                                             DateTime?                  @db.Timestamptz(6)
+  user_updated                                             String?                    @db.Uuid
+  date_updated                                             DateTime?                  @db.Timestamptz(6)
+  voice                                                    String                     @default("female") @db.VarChar(255)
+  editor_type                                              String                     @db.VarChar(255)
+  account                                                  Int
+  knowledge_base                                           String?                    @db.Uuid
+  script                                                   String?
+  date_deleted                                             DateTime?                  @db.Timestamp(6)
+  title                                                    String                     @db.VarChar(255)
+  script_schema                                            Json?                      @db.Json
+  script_language                                          String?                    @db.VarChar(255)
+  calendar                                                 String?                    @db.Uuid
+  flow                                                     flow[]
+  account_flow_agent_accountToaccount                      account                    @relation("flow_agent_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_agent_account_foreign")
+  flow_integration_calendar                                flow_integration_calendar? @relation(fields: [calendar], references: [id], onUpdate: NoAction, map: "flow_agent_calendar_foreign")
+  knowledge_base_flow_agent_knowledge_baseToknowledge_base knowledge_base?            @relation("flow_agent_knowledge_baseToknowledge_base", fields: [knowledge_base], references: [id], onUpdate: NoAction, map: "flow_agent_knowledge_base_foreign")
+  directus_users_flow_agent_user_createdTodirectus_users   directus_users?            @relation("flow_agent_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_agent_user_created_foreign")
+  directus_users_flow_agent_user_updatedTodirectus_users   directus_users?            @relation("flow_agent_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_agent_user_updated_foreign")
+  flow_agent_flow_action                                   flow_agent_flow_action[]
+  flow_interaction                                         flow_interaction[]
+}
+
+model flow_agent_flow_action {
+  id             Int          @id @default(autoincrement())
+  flow_agent_id  String?      @db.Uuid
+  flow_action_id String?      @db.Uuid
+  flow_action    flow_action? @relation(fields: [flow_action_id], references: [id], onUpdate: NoAction, map: "flow_agent_flow_action_flow_action_id_foreign")
+  flow_agent     flow_agent?  @relation(fields: [flow_agent_id], references: [id], onUpdate: NoAction, map: "flow_agent_flow_action_flow_agent_id_foreign")
+}
+
+model flow_contact {
+  id                                                       String                              @id @db.Uuid
+  user_created                                             String?                             @db.Uuid
+  date_created                                             DateTime?                           @db.Timestamptz(6)
+  user_updated                                             String?                             @db.Uuid
+  date_updated                                             DateTime?                           @db.Timestamptz(6)
+  first_name                                               String                              @db.VarChar(255)
+  last_name                                                String                              @db.VarChar(255)
+  email                                                    String?                             @db.VarChar(255)
+  status                                                   String                              @db.VarChar(255)
+  date_deleted                                             DateTime?                           @db.Timestamp(6)
+  metadata                                                 Json?                               @db.Json
+  account                                                  Int
+  phone                                                    String                              @db.VarChar(255)
+  account_flow_contact_accountToaccount                    account                             @relation("flow_contact_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_contact_account_foreign")
+  directus_users_flow_contact_user_createdTodirectus_users directus_users?                     @relation("flow_contact_user_createdTodirectus_users", fields: [user_created], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_contact_user_created_foreign")
+  directus_users_flow_contact_user_updatedTodirectus_users directus_users?                     @relation("flow_contact_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_contact_user_updated_foreign")
+  flow_contact_flow_contact_segment                        flow_contact_flow_contact_segment[]
+  flow_interaction                                         flow_interaction[]
+}
+
+model flow_contact_flow_contact_segment {
+  id                      Int                   @id @default(autoincrement())
+  flow_contact_id         String?               @db.Uuid
+  flow_contact_segment_id String?               @db.Uuid
+  flow_contact_segment    flow_contact_segment? @relation(fields: [flow_contact_segment_id], references: [id], onUpdate: NoAction, map: "flow_contact_flow_contact_segment_flow_con__488c4360_foreign")
+  flow_contact            flow_contact?         @relation(fields: [flow_contact_id], references: [id], onUpdate: NoAction, map: "flow_contact_flow_contact_segment_flow_contact_id_foreign")
+}
+
+model flow_contact_segment {
+  id                                                       String                              @id @db.Uuid
+  date_created                                             DateTime?                           @db.Timestamptz(6)
+  label                                                    String                              @db.VarChar(255)
+  account                                                  Int
+  date_deleted                                             DateTime?                           @db.Timestamp(6)
+  date_updated                                             DateTime?                           @db.Timestamp(6)
+  flow                                                     flow[]
+  flow_contact_flow_contact_segment                        flow_contact_flow_contact_segment[]
+  flow_contact_import_flow_contact_import_segmentTosegment flow_contact_import[]               @relation("flow_contact_import_segmentTosegment")
+  account_flow_contact_segment_accountToaccount            account                             @relation("flow_contact_segment_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_contact_segment_account_foreign")
+}
+
+model flow_integration_webhook {
+  id                                                String    @id @db.Uuid
+  date_created                                      DateTime? @db.Timestamptz(6)
+  url                                               String    @db.VarChar(255)
+  bearer_token                                      String?   @db.VarChar(255)
+  account                                           Int?
+  title                                             String?   @db.VarChar(255)
+  account_flow_integration_webhook_accountToaccount account?  @relation("flow_integration_webhook_accountToaccount", fields: [account], references: [id], onUpdate: NoAction, map: "flow_integration_webhook_account_foreign")
+}
+
+model flow_interaction {
+  id                                        String                       @id @db.Uuid
+  date_created                              DateTime?                    @db.Timestamptz(6)
+  account                                   Int
+  contact                                   String?                      @db.Uuid
+  flow                                      String?                      @db.Uuid
+  agent                                     String                       @db.Uuid
+  external_id                               String?                      @unique(map: "flow_interaction_external_id_unique") @db.VarChar(255)
+  date_updated                              DateTime?                    @db.Timestamp(6)
+  contact_name                              String                       @db.VarChar(255)
+  contact_phone                             String                       @db.VarChar(255)
+  history                                   Json?                        @default("[]") @db.Json
+  status                                    String                       @db.VarChar(255)
+  cost                                      Decimal?                     @db.Decimal(10, 5)
+  account_flow_interaction_accountToaccount account                      @relation("flow_interaction_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_interaction_account_foreign")
+  flow_agent                                flow_agent                   @relation(fields: [agent], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_interaction_agent_foreign")
+  flow_contact                              flow_contact?                @relation(fields: [contact], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_interaction_contact_foreign")
+  flow_flow_interaction_flowToflow          flow?                        @relation("flow_interaction_flowToflow", fields: [flow], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_interaction_flow_foreign")
+  flow_interaction_recording                flow_interaction_recording[]
+}
+
+model flow_interaction_recording {
+  id                                                  String           @id @db.Uuid
+  date_created                                        DateTime?        @db.Timestamptz(6)
+  account                                             Int
+  file                                                String           @db.Uuid
+  duration                                            Int
+  date_viewed                                         DateTime?        @db.Timestamp(6)
+  date_downloaded                                     DateTime?        @db.Timestamp(6)
+  interaction                                         String           @db.Uuid
+  account_flow_interaction_recording_accountToaccount account          @relation("flow_interaction_recording_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_interaction_recording_account_foreign")
+  directus_files                                      directus_files   @relation(fields: [file], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "flow_interaction_recording_file_foreign")
+  flow_interaction                                    flow_interaction @relation(fields: [interaction], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_interaction_recording_interaction_foreign")
+}
+
+model knowledge_base {
+  id                                                   String                             @id @db.Uuid
+  date_created                                         DateTime?                          @db.Timestamptz(6)
+  date_updated                                         DateTime?                          @db.Timestamptz(6)
+  type                                                 String                             @db.VarChar(255)
+  account                                              Int
+  title                                                String                             @db.VarChar(255)
+  flow_agent_flow_agent_knowledge_baseToknowledge_base flow_agent[]                       @relation("flow_agent_knowledge_baseToknowledge_base")
+  account_knowledge_base_accountToaccount              account                            @relation("knowledge_base_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "knowledge_base_account_foreign")
+  knowledge_base_qa_knowledge_base                     knowledge_base_qa_knowledge_base[]
+}
+
+model knowledge_base_qa {
+  id                                         String                             @id @db.Uuid
+  date_created                               DateTime?                          @db.Timestamptz(6)
+  date_updated                               DateTime?                          @db.Timestamptz(6)
+  question                                   String                             @db.VarChar(255)
+  answer                                     String
+  account                                    Int
+  account_knowledge_base_qa_accountToaccount account                            @relation("knowledge_base_qa_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "knowledge_base_qa_account_foreign")
+  knowledge_base_qa_knowledge_base           knowledge_base_qa_knowledge_base[]
+}
+
+model knowledge_base_qa_knowledge_base {
+  id                   Int                @id @default(autoincrement())
+  knowledge_base_qa_id String?            @db.Uuid
+  knowledge_base_id    String?            @db.Uuid
+  knowledge_base_qa    knowledge_base_qa? @relation(fields: [knowledge_base_qa_id], references: [id], onUpdate: NoAction, map: "knowledge_base_qa_knowledge_base_knowledge__559d651d_foreign")
+  knowledge_base       knowledge_base?    @relation(fields: [knowledge_base_id], references: [id], onUpdate: NoAction, map: "knowledge_base_qa_knowledge_base_knowledge_base_id_foreign")
+}
+
+model flow_contact_import {
+  id                                           String               @id @db.Uuid
+  status                                       String               @db.VarChar(255)
+  date_created                                 DateTime?            @db.Timestamptz(6)
+  date_updated                                 DateTime?            @db.Timestamptz(6)
+  total_items                                  Int
+  completed_items                              Int
+  errored_items_report                         Json                 @db.Json
+  account                                      Int
+  segment                                      String               @db.Uuid
+  user                                         Int
+  account_flow_contact_import_accountToaccount account              @relation("flow_contact_import_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_contact_import_account_foreign")
+  segment_flow_contact_import_segmentTosegment flow_contact_segment @relation("flow_contact_import_segmentTosegment", fields: [segment], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_contact_import_segment_foreign")
+  user_flow_contact_import_userTouser          user                 @relation("flow_contact_import_userTouser", fields: [user], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "flow_contact_import_user_foreign")
+}
+
+model account_credit {
+  id                                      String                       @id @db.Uuid
+  date_created                            DateTime?                    @db.Timestamptz(6)
+  date_updated                            DateTime?                    @db.Timestamptz(6)
+  balance                                 Decimal                      @db.Decimal(10, 2)
+  amount                                  Decimal                      @db.Decimal(10, 2)
+  is_given_by_plan                        Boolean                      @default(false)
+  account                                 Int
+  account_account_credit_accountToaccount account                      @relation("account_credit_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "account_credit_account_foreign")
+  account_credit_transaction              account_credit_transaction[]
+}
+
+model account_credit_transaction {
+  id             String         @id @db.Uuid
+  date_created   DateTime?      @db.Timestamptz(6)
+  date_updated   DateTime?      @db.Timestamptz(6)
+  type           String         @db.VarChar(255)
+  credit         String         @db.Uuid
+  amount         Decimal        @db.Decimal(10, 5)
+  reason         String         @db.VarChar(255)
+  account_credit account_credit @relation(fields: [credit], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "account_credit_transaction_credit_foreign")
+}
+
+model subscription_plan_price {
+  id                     String            @id @db.Uuid
+  date_created           DateTime?         @db.Timestamptz(6)
+  date_updated           DateTime?         @db.Timestamptz(6)
+  external_id            String?           @unique(map: "subscription_plan_price_external_id_unique") @db.VarChar(255)
+  price                  Decimal?          @db.Decimal(10, 5)
+  interval               String            @db.VarChar(255)
+  plan                   Int
+  monthly_given_balance  Decimal?          @db.Decimal(10, 2)
+  quotation_request_cost Decimal?          @db.Decimal(10, 2)
+  flow_minute_cost       Decimal?          @db.Decimal(10, 2)
+  currency               String            @db.VarChar(255)
+  subscription           subscription[]
+  subscription_plan      subscription_plan @relation(fields: [plan], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "subscription_plan_price_plan_foreign")
+}
+
+model directus_extensions {
+  name    String  @id @db.VarChar(255)
+  enabled Boolean @default(true)
+}
+
+model directus_versions {
+  id                                                            String               @id @db.Uuid
+  key                                                           String               @db.VarChar(64)
+  name                                                          String?              @db.VarChar(255)
+  collection                                                    String               @db.VarChar(64)
+  item                                                          String               @db.VarChar(255)
+  hash                                                          String?              @db.VarChar(255)
+  date_created                                                  DateTime?            @default(now()) @db.Timestamptz(6)
+  date_updated                                                  DateTime?            @default(now()) @db.Timestamptz(6)
+  user_created                                                  String?              @db.Uuid
+  user_updated                                                  String?              @db.Uuid
+  directus_revisions                                            directus_revisions[]
+  directus_collections                                          directus_collections @relation(fields: [collection], references: [collection], onDelete: Cascade, onUpdate: NoAction, map: "directus_versions_collection_foreign")
+  directus_users_directus_versions_user_createdTodirectus_users directus_users?      @relation("directus_versions_user_createdTodirectus_users", fields: [user_created], references: [id], onUpdate: NoAction, map: "directus_versions_user_created_foreign")
+  directus_users_directus_versions_user_updatedTodirectus_users directus_users?      @relation("directus_versions_user_updatedTodirectus_users", fields: [user_updated], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "directus_versions_user_updated_foreign")
+}
+
+model account_api_key {
+  id                                       String    @id @db.Uuid
+  date_created                             DateTime? @db.Timestamptz(6)
+  date_updated                             DateTime? @db.Timestamptz(6)
+  account                                  Int
+  name                                     String?   @db.VarChar(255)
+  token                                    String    @unique(map: "account_api_key_token_unique") @db.VarChar(255)
+  created_by                               Int
+  account_account_api_key_accountToaccount account   @relation("account_api_key_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "account_api_key_account_foreign")
+  user                                     user      @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "account_api_key_created_by_foreign")
+}
+
+model flow_integration_calendar {
+  id                                                 String       @id @db.Uuid
+  date_created                                       DateTime?    @db.Timestamptz(6)
+  date_updated                                       DateTime?    @db.Timestamptz(6)
+  name                                               String       @db.VarChar(255)
+  account                                            Int
+  settings                                           Json         @db.Json
+  flow_agent                                         flow_agent[]
+  account_flow_integration_calendar_accountToaccount account      @relation("flow_integration_calendar_accountToaccount", fields: [account], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "flow_integration_calendar_account_foreign")
+}
+
+model session {
+  id                                    String    @id @db.Uuid
+  status                                String?   @db.VarChar(255)
+  date_created                          DateTime? @db.Timestamptz(6)
+  date_updated                          DateTime? @db.Timestamptz(6)
+  user                                  Int
+  simulated_by_admin                    Int?
+  ip                                    String?   @db.VarChar(255)
+  os                                    String?   @db.VarChar(255)
+  browser                               String?   @db.VarChar(255)
+  user_session_simulated_by_adminTouser user?     @relation("session_simulated_by_adminTouser", fields: [simulated_by_admin], references: [id], onUpdate: NoAction, map: "session_simulated_by_admin_foreign")
+  user_session_userTouser               user      @relation("session_userTouser", fields: [user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "session_user_foreign")
+}

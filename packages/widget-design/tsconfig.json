@@ -1,0 +1,23 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		// baseurl for shadcn to work properly
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		// "rootDir": "./src",
+		"outDir": "./dist",
+		"lib": ["dom"],
+		// "target": "ES2022",
+		// "module": "commonjs",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"moduleResolution": "node",
+		"preserveWatchOutput": true,
+		"skipLibCheck": true,
+		"strict": true
+	},
+	"include": ["./src", "global.d.ts"]
+}

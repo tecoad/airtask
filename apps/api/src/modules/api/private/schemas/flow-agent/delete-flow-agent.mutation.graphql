@@ -1,0 +1,3 @@
+extend type Mutation {
+	deleteFlowAgent(id: ID!): Boolean!
+}

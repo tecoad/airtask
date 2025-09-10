@@ -1,0 +1,60 @@
+enum QuotationStatus {
+  published
+  archived
+}
+
+input CreateQuotationInput {
+  title: String!
+  prompt_instructions: String
+  status: QuotationStatus!
+  account: ID!
+}
+
+type Quotation {
+  id: ID!
+  title: String!
+  hash: String!
+  status: QuotationStatus!
+  prompt_instructions: String
+  date_created: DateTime!
+  date_updated: DateTime
+  date_deleted: DateTime
+  questions: [QuotationQuestion!]
+  questions_count: Int!
+  requests_count: Int!
+  widget_config: WidgetConfig
+}
+
+type QuotationQuestion {
+  id: ID!
+  quotation: String!
+  label: String!
+  condition: String
+  parent: String
+  order: Int!
+  active: Boolean!
+}
+
+input CreateQuotationQuestionInput {
+  quotation: ID!
+  label: String!
+  order: Int!
+  children: [CreateQuotationQuestionChildrenInput!]
+  parent: ID
+  condition: String
+  active: Boolean!
+}
+
+input CreateQuotationQuestionChildrenInput {
+  label: String!
+  condition: String!
+  order: Int!
+  children: [CreateQuotationQuestionChildrenInput!]
+}
+
+extend type Mutation {
+  createQuotation(input: CreateQuotationInput!): Quotation!
+  createQuotationQuestion(
+    input: [CreateQuotationQuestionInput!]!
+  ): [QuotationQuestion!]!
+}

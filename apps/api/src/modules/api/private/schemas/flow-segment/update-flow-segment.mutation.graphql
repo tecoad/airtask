@@ -1,0 +1,8 @@
+input UpdateFlowContactSegmentInput {
+	id: ID!
+	label: String
+}
+
+extend type Mutation {
+	updateFlowContactSegment(input: UpdateFlowContactSegmentInput!): FlowContactSegment!
+}

@@ -1,0 +1,36 @@
+enum AccountUsageKind {
+	quotation
+	flow
+}
+
+enum CreditTransactionType {
+	credit
+	debit
+}
+
+enum CreditTransactionReason {
+	module_usage
+	plan_creation
+	plan_renewal
+	plan_change
+	plan_cancellation
+
+	credit_buy
+}
+
+type CreditTransaction {
+	creditId: ID!
+	reason: CreditTransactionReason
+}
+
+type AccountSubscriptionData {
+	plan: String!
+	plan_interval: PlanInterval!
+	credits: Float!
+	period_start: DateTime!
+	period_end: DateTime!
+}
+
+extend type Query {
+	accountSubscriptionData(accountId: ID!): AccountSubscriptionData
+}

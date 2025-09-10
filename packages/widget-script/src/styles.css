@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--button-bg: {{BG}};
+		--button-textColor: {{TEXT_COLOR}};
+		--button-gradientColor: {{GRADIENT_COLOR}};
+		--button-fontFamily: {{FONT_FAMILY}};
+		--button-fontSize: {{FONT_SIZE}}px;
+		--button-iconColor: {{ICON_COLOR}};
+		--button-iconUrl: url('{{ICON_URL}}');
+		--button-iconCloseUrl: url('{{ICON_CLOSE_URL}}');
+	}
+}
+
+.atk-app {
+	@apply h-auto;
+}
+
+.atk-iframe-wrapper {
+	@apply md:h-custom mobile-only:inset-0 md:shadow-custom pointer-events-none fixed z-[999999] h-full w-full scale-0 overflow-hidden opacity-0 md:w-[400px] md:rounded-2xl;
+
+	transition:
+		width 200ms ease 0s,
+		height 200ms ease 0s,
+		max-height 200ms ease 0s,
+		transform 300ms cubic-bezier(0, 1.2, 1, 1) 0s,
+		opacity 83ms ease-out 0s;
+
+	&.top-left {
+		@apply origin-top-left md:left-[20px] md:top-[84px];
+	}
+	&.top-right {
+		@apply origin-top-right md:right-[20px] md:top-[84px];
+	}
+	&.bottom-left {
+		@apply origin-bottom-left md:bottom-[84px] md:left-[20px];
+	}
+	&.bottom-right {
+		@apply origin-bottom-right md:bottom-[84px] md:right-[20px];
+	}
+
+	&.open {
+		@apply pointer-events-auto scale-100 opacity-100;
+	}
+}
+
+.atk-iframe {
+	@apply absolute h-full w-full border-none;
+}
+
+.bg-gradient {
+	@apply bg-[--button-bg] bg-gradient-to-l from-transparent from-[30%] via-[--button-gradientColor] via-[50%] to-transparent to-[70%];
+}
+
+.background-animate {
+	background-size: 400%;
+	animation: GradientAnimation 6s ease infinite;
+	animation-play-state: running;
+}
+
+@keyframes GradientAnimation {
+	0%,
+	100% {
+		background-position: 0% 0%;
+	}
+	25% {
+		background-position: 100% 100%;
+	}
+	50% {
+		background-position: 0% 100%;
+	}
+	75% {
+		background-position: 100% 0%;
+	}
+}
+
+.atk-button {
+	@apply highlight-white/30 fixed z-[9999] flex h-[48px] w-[48px] origin-center scale-0 cursor-pointer flex-row items-center justify-center gap-3 overflow-hidden rounded-full border-none  text-white opacity-0 transition-colors duration-500 font-medium text-[--button-textColor] bg-[--button-bg] bg-gradient background-animate;
+
+	font-size:var(--button-fontSize);
+	font-family: var(--button-fontFamily);
+
+	transition: all 250ms cubic-bezier(0.33, 0, 0, 1) 0s;
+
+	&.loaded {
+		@apply translate-y-0 scale-100 opacity-100;
+	}
+
+	&:hover, &.open {
+		@apply md:scale-110;
+		animation-play-state: paused;
+	}
+
+	&:active {
+		@apply scale-75 md:scale-90;
+	}
+
+	/* &.slide-in {
+		@apply translate-y-[calc(100%+20px)] scale-100 opacity-100;
+	} */
+
+	&.with-text {
+		@apply w-auto pl-3 pr-5;
+	}
+
+	&.top-left {
+		@apply left-[20px] top-[20px];
+	}
+
+	&.top-right {
+		@apply right-[20px] top-[20px];
+	}
+	&.bottom-left {
+		@apply bottom-[20px] left-[20px];
+	}
+	&.bottom-right {
+		@apply bottom-[20px] right-[20px];
+	}
+	
+}
+
+.atk-icon {
+	@apply relative flex h-[30px] w-[30px] items-center justify-center ;
+
+	.atk-open-icon,
+	.atk-close-icon {
+		@apply absolute h-full w-full rotate-0 opacity-100 bg-[--button-iconColor];
+
+		transition:
+			transform 0.16s linear 0s,
+			opacity 0.08s linear 0s;
+	}
+
+	.atk-open-icon {
+		mask:var(--button-iconUrl) no-repeat center;
+		mask-size: contain;
+	}
+
+	.atk-close-icon {
+		mask:var(--button-iconCloseUrl) no-repeat center;
+		mask-size: contain;
+	}
+
+	&.open > .atk-open-icon {
+		@apply rotate-[30deg] scale-0 opacity-0;
+	}
+
+	&:not(.open) > .atk-close-icon {
+		@apply -rotate-[60deg] scale-0 opacity-0;
+	}
+}
+

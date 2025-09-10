@@ -1,0 +1,27 @@
+type DebugInteractionCreated {
+	interactionId: String!
+}
+
+enum DebugInteractionErrorCode {
+	INSUFFICIENT_FUNDS
+}
+
+type DebugInteractionError {
+	errorCode: DebugInteractionErrorCode!
+	message: String!
+}
+
+union CreateDebugInteractionResult = DebugInteractionCreated | DebugInteractionError
+
+input CreateDebugInteractionInput {
+	agentId: ID!
+	phoneNumber: String!
+	prospectName: String!
+	debugAsInbound: Boolean!
+}
+
+extend type Mutation {
+	createDebugInteraction(
+		input: CreateDebugInteractionInput!
+	): CreateDebugInteractionResult!
+}

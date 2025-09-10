@@ -1,0 +1,22 @@
+enum KnowledgeBaseType {
+	"Q&A"
+	qa
+}
+
+type KnowledgeBase {
+	id: ID!
+	title: String!
+	type: KnowledgeBaseType!
+	qa: [KnowledgeBaseQA!]!
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+input CreateKnowledgeBaseInput {
+	title: String!
+	type: KnowledgeBaseType!
+}
+
+extend type Mutation {
+	createKnowledgeBase(accountId: ID!, input: CreateKnowledgeBaseInput!): KnowledgeBase!
+}

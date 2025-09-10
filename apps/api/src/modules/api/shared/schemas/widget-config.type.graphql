@@ -1,0 +1,28 @@
+enum WidgetTheme {
+	dark
+	light
+	both
+}
+
+type WidgetConfig {
+	title: String
+	main_color: String
+	position: String
+	google_font: String
+	font_size: Int
+	width: String
+	height: String
+	hide_powered_by: Boolean
+	initially_open: Boolean
+	allowed_domains: [String!]
+	theme: WidgetTheme
+	button_text: String
+	button_text_color: String
+	distance_from_border: Int
+	button_size: Int
+	button_color: String
+	button_font_size: String
+	button_icon_color: String
+	icon: Asset
+	avatar: Asset
+}

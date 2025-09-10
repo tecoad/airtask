@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "unexpected": "An unexpected error occurred trying to init the conversation. Please, try again later",
+    "quotationNotFound": "The widget you are trying to access doesn't exist.",
+    "quotationNotFoundAfterCreateConversation": "The module used to create this conversation is no longer available.",
+    "quotationWithoutActiveSubscription": "This user no longer has an active account.",
+    "domainNotAllowed": "This domain isn't allowed to access this widget."
+  }
+}

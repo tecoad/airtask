@@ -1,0 +1,4 @@
+extend type Query {
+	knowledgeBase(id: ID!): KnowledgeBase
+	accountKnowledgeBases(accountId: ID!): [KnowledgeBase!]!
+}

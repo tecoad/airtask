@@ -1,0 +1,26 @@
+enum FlowStatus {
+	active
+	paused
+	stopped
+}
+enum FlowType {
+	inbound
+	outbound
+}
+
+type Flow {
+	id: ID!
+	name: String!
+	type: FlowType!
+	agent: FlowAgent!
+	segment: FlowContactSegment
+	status: FlowStatus!
+	daily_budget: Float!
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+extend type Query {
+	accountFlow(id: ID!): Flow
+	accountFlows(accountId: ID!): [Flow!]!
+}

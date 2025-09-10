@@ -1,0 +1,8 @@
+input BatchUpdateFlowContact {
+	id: ID!
+	status: FlowContactStatus
+}
+
+extend type Mutation {
+	batchUpdateFlowContact(input: [BatchUpdateFlowContact!]!): [FlowContact!]!
+}

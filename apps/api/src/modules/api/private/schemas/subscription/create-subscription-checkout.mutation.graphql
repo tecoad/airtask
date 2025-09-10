@@ -1,0 +1,14 @@
+input CreateSubscriptionCheckoutInput {
+  accountId: ID!
+  priceExternalId: String!
+}
+
+type CreateSubscriptionCheckoutResult {
+  url: String!
+}
+
+extend type Mutation {
+  createSubscriptionCheckout(
+    input: CreateSubscriptionCheckoutInput!
+  ): CreateSubscriptionCheckoutResult!
+}

@@ -1,0 +1,28 @@
+enum FlowAgentVoice {
+	male
+	female
+}
+
+enum FlowAgentEditorType {
+	form
+	standard
+	advanced
+}
+
+type FlowAgent {
+	id: ID!
+	title: String!
+	voice: FlowAgentVoice!
+	editor_type: FlowAgentEditorType!
+	script: String
+	script_schema: JSON
+	script_language: String
+	knowledge_base: KnowledgeBase
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+extend type Query {
+	accountFlowAgent(id: ID!): FlowAgent
+	accountFlowAgents(account: ID!): [FlowAgent!]!
+}

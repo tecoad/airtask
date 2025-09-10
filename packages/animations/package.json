@@ -1,0 +1,21 @@
+{
+	"name": "@airtask/animations",
+	"version": "1.0.0",
+	"private": true,
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "rm -rf dist && tsc"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.22",
+		"lottie-colorify": "^0.8.0",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"lottie-react": "^2.4.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"tinycolor2": "^1.6.0"
+	}
+}

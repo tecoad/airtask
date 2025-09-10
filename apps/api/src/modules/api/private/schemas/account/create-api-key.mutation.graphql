@@ -1,0 +1,18 @@
+type AccountApiKey {
+	id: ID!
+	"Complete API key. Only will be returned when creating a new key."
+	token: String
+	maskedToken: String!
+	name: String
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+input CreateAccountApiKeyInput {
+	accountId: ID!
+	name: String
+}
+
+extend type Mutation {
+	createAccountApiKey(input: CreateAccountApiKeyInput): AccountApiKey!
+}

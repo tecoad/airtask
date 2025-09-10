@@ -1,0 +1,31 @@
+input RegisterUserInput {
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String!
+  referrer: String
+  language: LanguageCode
+}
+
+enum UserAuthErrorCode {
+  EMAIL_ALREADY_EXISTS
+  INVALID_CREDENTIALS
+
+  EMAIL_NOT_VERIFIED
+}
+
+type UserAuthError {
+  errorCode: UserAuthErrorCode!
+  message: String!
+}
+
+type UserRegistered {
+  created_id: ID!
+  should_verify_email: Boolean!
+}
+
+union RegisterUserResult = UserRegistered | UserAuthError
+
+type Mutation {
+  registerUser(input: RegisterUserInput!): RegisterUserResult!
+}

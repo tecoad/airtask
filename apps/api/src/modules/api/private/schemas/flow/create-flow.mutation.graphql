@@ -1,0 +1,13 @@
+input CreateFlowInput {
+	account: ID!
+	name: String!
+	type: FlowType!
+	agent: ID!
+	segment: ID
+	status: FlowStatus!
+	daily_budget: Float!
+}
+
+extend type Mutation {
+	createFlow(input: CreateFlowInput!): Flow!
+}

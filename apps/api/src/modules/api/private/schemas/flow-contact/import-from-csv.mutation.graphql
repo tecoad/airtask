@@ -1,0 +1,31 @@
+input ImportFlowContactsFromCsvInput {
+	account: ID!
+	segment: ID!
+}
+
+type ImportFlowContactsQueued {
+	queued_items: Int!
+	import_id: ID!
+}
+
+enum ImportFlowContactsErrorCode {
+	INVALID_FILE_FORMAT
+	"On this error, the message will be a list of columns missing, separated by comma"
+	INVALID_CSV_COLUMNS_STRUCTURE
+
+	NO_ITEMS_FOUND
+}
+
+type ImportFlowContactsError {
+	errorCode: ImportFlowContactsErrorCode!
+	message: String!
+}
+
+union ImportFlowContactsFromCsvResult = ImportFlowContactsQueued | ImportFlowContactsError
+
+extend type Mutation {
+	importFlowContactsFromCsv(
+		input: ImportFlowContactsFromCsvInput!
+		csv: Upload!
+	): ImportFlowContactsFromCsvResult!
+}

@@ -1,0 +1,16 @@
+input CreateUserAffiliateInput {
+  alias: String!
+  payout_method: AffiliatePayoutMethod!
+  payout_method_key: String!
+  password: String!
+}
+
+extend type Mutation {
+  createAffiliateForUser(
+    input: CreateUserAffiliateInput!
+  ): AffiliateSettingsResult!
+}
+
+extend type Query {
+  isAffiliateAliasAvailable(alias: String!): Boolean!
+}

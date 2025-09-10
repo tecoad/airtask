@@ -1,0 +1,56 @@
+{
+	"quotationNotification": {
+		"subject": "New request from {{name}}.",
+		"hello": "Hello <0>{{ name }}</0>,",
+		"heading": "You just received a new request from <0>{{name}}</0>",
+		"requestData": {
+			"name": "Name: <0>{{name}}</0>",
+			"email": "Email: <0>{{email}}</0>",
+			"phone": "Phone: <0>{{phone}}</0>",
+			"title": "Request Data"
+		},
+		"instructions": "You can now contact him by clicking on the contacts in this email or replying to this email."
+	},
+	"footer": {
+		"reason": "You are receiving this message because your email was used on our website."
+	},
+	"resetPassword": {
+		"subject": "Password Reset",
+		"title": "Redefine your password",
+		"accessLink": "Access this link to redefine your password: <0>{{- link}}</0>",
+		"noticeAlert": "<0>Important:</0> Do not share this link with anyone else as it can lead to unauthorized access to your account.",
+		"resetPassword": "Reset password"
+	},
+	"subscriptionPaymentFailed": {
+		"title": "We have a problem.",
+		"subject": "We are unable to charge your plan.",
+		"notAbleToCharge": "{{name}}, we are unable to charge your subscription.",
+		"reviewInfo": "You can now review the billing information in your account. <0/>\n\n<1>We will attempt a new charge in a few days.</1>",
+		"reviewAccount": "Review Billing Info",
+		"warning": "<0>Important:</0> we will make a maximum of 3 collection attempts. <1/>\nAfter the 3rd unsuccessful attempt, your plan will be cancelled."
+	},
+	"usageLimitCloseToExceed": {
+		"title": "{{name}}, you are close to you usage quota on: {{module}}.",
+		"subject": "{{module}}: You are close to the usage limit.",
+		"subtitle": "You are receiving this notification because you only have 30% of your plan credits remaining.",
+		"noticeAlert": "Your widgets may soon be inactivated. <0/>\nOr you can migrate the plan or purchase extra credits now.",
+		"buyCredits": "Buy Credits"
+	},
+	"usageLimitExceeded": {
+		"title": "{{ name }}, your service is now inactive.",
+		"subject": "Usage limit: {{module}} inactive.",
+		"subtitle": "You have reached the usage limit of your plan for module {{module}}.",
+		"instructions": "To reactivate it, you can migrate the plan or purchase extra credits.",
+		"managePlan": "Manage Plan"
+	},
+	"verifyEmail": {
+		"title": "Verify now your email",
+		"subject": "Please, verify your email.",
+		"verifyEmailAccess": "Access the link to verify your email now: <0>{{-link}}</0>",
+		"noticeAlert": "<0>Important:</0> Do not provide this link to third parties.",
+		"accessAccount": "Access account"
+	},
+	"standardContent": {
+		"contactUs": "<0>Doubts?</0> Reach us at <1>help@airtask.ai</1> or by one of the methods available <2>accessing your account</2>."
+	}
+}

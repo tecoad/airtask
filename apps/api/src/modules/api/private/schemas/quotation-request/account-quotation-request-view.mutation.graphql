@@ -1,0 +1,3 @@
+extend type Mutation {
+  visualizeQuotationRequest(requestId: [ID!]!): Boolean
+}

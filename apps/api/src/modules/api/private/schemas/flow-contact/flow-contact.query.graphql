@@ -1,0 +1,47 @@
+enum FlowContactStatus {
+	active
+	inactive
+}
+
+type FlowContact {
+	id: ID!
+	status: FlowContactStatus!
+	first_name: String!
+	last_name: String!
+	email: String
+	phone: String!
+	segments: [FlowContactSegment!]!
+	date_created: DateTime!
+	date_updated: DateTime
+}
+
+input FlowContactListSort {
+	date_created: SortOrder
+}
+
+input PaginatedFlowContactListOptions {
+	take: Int
+	skip: Int
+	sort: FlowContactListSort
+}
+
+input FlowContactListFilter {
+	operator: FilterOperator!
+	status: FlowContactStatus
+	segment: ID
+	"email, phone, first_name or last_name"
+	search: String
+}
+
+type PaginatedFlowContactsList {
+	items: [FlowContact!]!
+	totalItems: Int!
+}
+
+extend type Query {
+	accountFlowContacts(
+		accountId: ID!
+		pagination: PaginatedFlowContactListOptions
+		filter: FlowContactListFilter
+	): PaginatedFlowContactsList!
+}

@@ -1,0 +1,7 @@
+union QuotationConversationResult =
+    QuotationConversation
+  | QuotationAvailabilityError
+
+type Query {
+  quotationConversation(id: ID!): QuotationConversationResult
+}

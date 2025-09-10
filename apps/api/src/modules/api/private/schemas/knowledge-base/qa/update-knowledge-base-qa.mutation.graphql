@@ -1,0 +1,11 @@
+input UpdateKnowledgeBaseQAInput {
+	id: ID!
+	"Will set"
+	knowledge_base_id: [ID!]
+	question: String
+	answer: String
+}
+
+extend type Mutation {
+	updateKnowledgeBaseQA(input: UpdateKnowledgeBaseQAInput!): KnowledgeBaseQA!
+}

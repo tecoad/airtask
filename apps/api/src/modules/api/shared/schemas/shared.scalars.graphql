@@ -1,0 +1,5 @@
+scalar File
+scalar DateTime
+scalar JSON
+scalar ID
+scalar Upload

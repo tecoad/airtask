@@ -1,0 +1,21 @@
+input UpdateUserAffiliateInput {
+  alias: String
+  payout_method: AffiliatePayoutMethod
+  payout_method_key: String
+  password: String!
+}
+
+enum AffiliateSettingsResultErrorCode {
+  INVALID_PASSWORD
+}
+
+type AffiliateSettingsResultError {
+  errorCode: AffiliateSettingsResultErrorCode!
+  message: String!
+}
+
+union AffiliateSettingsResult = Affiliate | AffiliateSettingsResultError
+
+extend type Mutation {
+  updateUserAffiliate(input: UpdateUserAffiliateInput!): AffiliateSettingsResult
+}

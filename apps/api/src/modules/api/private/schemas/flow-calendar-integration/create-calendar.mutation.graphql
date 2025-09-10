@@ -1,0 +1,30 @@
+enum FlowCalendarIntegrationType {
+	savvycall
+}
+
+type FlowCalendarIntegrationSettings__SavvyCal {
+	private_key: String!
+	link_id: String!
+	type: FlowCalendarIntegrationType!
+}
+
+union FlowCalendarIntegrationSettings = FlowCalendarIntegrationSettings__SavvyCal
+
+input CreateFlowCalendarIntegrationInput {
+	name: String!
+	account: ID!
+	"Should be the type FlowCalendarIntegrationSettings"
+	settings: JSON!
+}
+
+type FlowCalendarIntegration {
+	id: ID!
+	name: String!
+	settings: FlowCalendarIntegrationSettings!
+}
+
+extend type Mutation {
+	createFlowCalendarIntegration(
+		input: CreateFlowCalendarIntegrationInput!
+	): FlowCalendarIntegration!
+}

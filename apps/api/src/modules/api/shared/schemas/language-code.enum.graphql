@@ -1,0 +1,9 @@
+type Translation {
+  language: LanguageCode!
+  value: String!
+}
+
+enum LanguageCode {
+  pt
+  en
+}
