@@ -3,7 +3,10 @@
 Airtask is a comprehensive AI-powered platform that enables businesses to create, manage, and deploy intelligent conversational agents for sales, support, and lead generation. The platform combines advanced AI capabilities with telephony integration, web widgets, and comprehensive management tools.
 
 
-https://github.com/user-attachments/assets/df7b44e0-07d0-46b9-a51d-a4bc66f882eb
+
+https://github.com/user-attachments/assets/55b8b7bb-57e9-4ae7-b8ca-cad62ec02e6e
+
+
 
 ## 🏗️ Project Architecture
 
